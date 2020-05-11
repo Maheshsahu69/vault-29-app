@@ -4,6 +4,8 @@ import {
   IonApp,
   IonContent,
   IonHeader,
+  IonTitle,
+  IonTabBar
   
 } from '@ionic/react';
 // import { IonReactRouter } from '@ionic/react-router';
@@ -39,9 +41,9 @@ import './theme/variables.css';
 const App: React.FC = () => (
     <IonApp>
       <IonHeader>
-        {/* <IonTabBar>
+        <IonTabBar>
           <IonTitle></IonTitle>
-        </IonTabBar> */}
+        </IonTabBar>
       </IonHeader>
       <IonContent class="ion-padding">
         <LandingPage pic={topPic}/>
