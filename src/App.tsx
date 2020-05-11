@@ -3,9 +3,6 @@ import React from 'react';
 import {
   IonApp,
   IonContent,
-  IonHeader,
-  IonTitle,
-  IonTabBar
   
 } from '@ionic/react';
 // import { IonReactRouter } from '@ionic/react-router';
@@ -40,11 +37,6 @@ import './theme/variables.css';
 
 const App: React.FC = () => (
     <IonApp>
-      <IonHeader>
-        <IonTabBar>
-          <IonTitle></IonTitle>
-        </IonTabBar>
-      </IonHeader>
       <IonContent class="ion-padding">
         <LandingPage pic={topPic}/>
       </IonContent>

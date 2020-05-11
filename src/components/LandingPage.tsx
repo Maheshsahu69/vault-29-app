@@ -39,55 +39,53 @@ const LandingPage: React.FC<{ pic: string }> = (props) => (
             </IonText>
           </IonCol>
         </IonRow>
-        </IonGrid>
-        
-        <IonFooter>
-          <div className="btn-background">
-              <IonGrid>
-            <IonRow>
-              <IonCol>
-                <IonButton
-                  fill="outline"
-                  expand="block"
-                  className="btn-facebook"
-                  size="large"
-                  strong
-                >
-                  <IonIcon icon={logoFacebook} slot="start"></IonIcon>
-                  CONNECT WITH FACEBOOK
-                </IonButton>
-              </IonCol>
-            </IonRow>
-
-            <IonRow>
-              <IonCol>
-                <IonButton
-                  fill="outline"
-                  expand="block"
-                  className="btn-join"
-                  size="large"
-                  strong
-                >
-                  JOIN
-                </IonButton>
-              </IonCol>
-              <IonCol>
-                <IonButton
-                  fill="outline"
-                  expand="block"
-                  className="btn-login"
-                  size="large"
-                  strong
-                >
-                  LOG IN
-                </IonButton>
-              </IonCol>
-            </IonRow>
-            </IonGrid>
-          </div>
-        </IonFooter>
-     
+      </IonGrid>
     </IonContent>
+    <IonFooter>
+      <div className="btn-background">
+        <IonGrid>
+          <IonRow>
+            <IonCol>
+              <IonButton
+                fill="outline"
+                expand="block"
+                className="btn-facebook"
+                size="large"
+                strong
+              >
+                <IonIcon icon={logoFacebook} slot="start"></IonIcon>
+                CONNECT WITH FACEBOOK
+              </IonButton>
+            </IonCol>
+          </IonRow>
+
+          <IonRow>
+            <IonCol>
+              <IonButton
+                fill="outline"
+                expand="block"
+                className="btn-join"
+                size="large"
+                strong
+              >
+                JOIN
+              </IonButton>
+            </IonCol>
+            <IonCol>
+              <IonButton
+                fill="outline"
+                expand="block"
+                className="btn-login"
+                size="large"
+                strong
+              >
+                LOG IN
+              </IonButton>
+            </IonCol>
+          </IonRow>
+        </IonGrid>
+      </div>
+    </IonFooter>
   </IonApp>
 );
 
