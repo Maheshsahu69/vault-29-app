@@ -1,5 +1,6 @@
 import React from "react";
 import "./LandingPage.css";
+import LoginPage from './LoginPage'
 import { logoFacebook } from "ionicons/icons";
 import {
   IonApp,
@@ -13,15 +14,19 @@ import {
   IonText,
   IonButton,
   IonFooter,
+  IonPage
 } from "@ionic/react";
+import {Link} from 'react-router-dom';
+import topPic from '../Images/icon.png';
 
-const LandingPage: React.FC<{ pic: string }> = (props) => (
-  <IonApp>
+const LandingPage: React.FC = () => (
+  
+  <IonPage>
     <IonContent className="bg-img">
       <IonGrid>
         <IonRow>
           <IonCol>
-            <IonImg src={props.pic} alt="topPic" className="top-img" />
+            <IonImg src={topPic} alt="topPic" className="top-img" />
           </IonCol>
         </IonRow>
         <IonRow>
@@ -72,21 +77,24 @@ const LandingPage: React.FC<{ pic: string }> = (props) => (
               </IonButton>
             </IonCol>
             <IonCol>
+            <Link to="loginpage" className="link-login">
               <IonButton
                 fill="outline"
                 expand="block"
                 className="btn-login"
                 size="large"
                 strong
+                
               >
-                LOG IN
+              LOG IN
               </IonButton>
+              </Link>
             </IonCol>
           </IonRow>
         </IonGrid>
       </div>
     </IonFooter>
-  </IonApp>
+  </IonPage>
 );
 
 export default LandingPage;

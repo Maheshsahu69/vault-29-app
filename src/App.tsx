@@ -3,16 +3,26 @@ import React from 'react';
 import {
   IonApp,
   IonContent,
+  IonRouterOutlet,
+  IonTabs,
+  IonHeader,
+  IonToolbar,
+  IonTitle,
+  IonTabBar,
+  IonTabButton,
+  IonLabel,
   
 } from '@ionic/react';
-// import { IonReactRouter } from '@ionic/react-router';
+import {IonReactRouter} from '@ionic/react-router';
+import { Route,Redirect , BrowserRouter,Link} from 'react-router-dom'
 // import { ellipse, square, triangle } from 'ionicons/icons';
 // import Tab1 from './pages/Tab1';
 // import Tab2 from './pages/Tab2';
 // import Tab3 from './pages/Tab3';
+import LoginPage from './components/LoginPage';
 
 import LandingPage from './components/LandingPage';
-import topPic from './Images/icon.png';
+
 // import bgImag from './Images/vault29-background.png';
 
 /* Core CSS required for Ionic components to work properly */
@@ -34,13 +44,55 @@ import '@ionic/react/css/display.css';
 /* Theme variables */
 import './theme/variables.css';
 
-
-const App: React.FC = () => (
+//  const logInCompo =()=>{
+//    <LoginPage />
+//  }
+const App: React.FC = () => {
+  return(
     <IonApp>
-      <IonContent class="ion-padding">
-        <LandingPage pic={topPic}/>
+      {/* <IonReactRouter>
+        <IonHeader>
+          <IonToolbar>
+            <IonTitle>
+              </IonTitle>
+              My title
+            </IonToolbar>
+          </IonHeader>
+          <IonContent class="ion-padding">
+            <IonTabs>
+              <IonRouterOutlet>
+                  <Route path="/loginpage" component={LoginPage} />
+                  <Route path="/" component={LandingPage} />
+              </IonRouterOutlet>
+              <IonTabBar slot="bottom">
+                <IonTabButton>
+                  <IonLabel>
+                    Landing Page
+                  </IonLabel>
+                </IonTabButton>
+
+                <IonTabButton>
+                  <IonLabel>
+                    Login Page
+                  </IonLabel>
+                </IonTabButton>
+
+                </IonTabBar>
+              </IonTabs>
+          </IonContent>
+      </IonReactRouter> */}
+      <IonContent>
+        {/* <LandingPage pic={topPic}/> */}
+        {/* <div><LoginPage pic={topPic}/></div> */}
+
+      <BrowserRouter>
+        <Route path="/" exact component={LandingPage} />
+        <Route path="/loginpage" component={LoginPage} />
+      </BrowserRouter>
       </IonContent>
+      
     </IonApp>
 );
+}
 
 export default App;

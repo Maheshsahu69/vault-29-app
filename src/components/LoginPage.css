@@ -1,0 +1,52 @@
+.bg-img{
+    
+    --background: #fff url('../Images/vault29-blurred-background.jpg') no-repeat center center / cover;  
+
+}
+.top-img{
+    height: 100px;
+    
+}
+.login-txt{
+    text-align: center;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 25px;
+}
+.email-txt{
+    text-align: center;
+
+}
+
+.password-txt{
+    text-align: center;
+}
+.pass-ion-item{
+    padding-top: 3%;
+}
+.email-ion-item{
+    padding-top: 3%;
+}
+.btn-login{
+    color:#ffffff;
+    --border-color	:#ffffff;
+    
+}
+
+.div-btn{
+    padding-top: 2%;
+}
+
+.dash-txt, .new-member-txt, .create-account-txt{
+    color:#ffffff;
+    padding: 10px;
+    text-align: center;
+}
+.bold{
+    font-weight: bold;
+}
+
+.link-create-account{
+    color:#ffffff;
+    text-decoration: none;
+}
