@@ -1,16 +1,18 @@
-import React from 'react';
-import { 
-    IonApp, 
-    IonImg,
-    IonContent
- } from '@ionic/react';
+import React from "react";
+import { IonApp, IonContent } from "@ionic/react";
 
-const WineWall: React.FC=()=>(
-   <IonApp>
-       <IonContent>
-          <div>Wine Wall Page</div>
-       </IonContent>
-   </IonApp>
-)
+class WineWall extends React.Component<any, any> {
+  render() {
+    return (
+      <div>
+        <IonApp>
+          <IonContent>
+            <div>Wine Wall Page</div>
+          </IonContent>
+        </IonApp>
+      </div>
+    );
+  }
+}
 
 export default WineWall;

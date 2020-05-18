@@ -1,0 +1,55 @@
+.bg-img-join {
+  --background: #fff url("../Images/vault29-blurred-background.jpg") no-repeat
+    center center / cover;
+}
+.top-img-join {
+  height: 100px;
+}
+#add-photo-txt {
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 30px;
+}
+.name-txtbx {
+  text-align: center;
+  color: #ffffff;
+  font-size: 25px;
+}
+.name-item,
+.username-item,
+.password-item,
+.confirm-password-item,
+.location-item,
+.email-item {
+  color: #ffffff;
+  padding-bottom: 5px;
+  text-align: center;
+}
+.password-txtbx {
+  text-align: center;
+  font-size: 25px;
+}
+.confirm-password-txtbx {
+  text-align: center;
+  font-size: 25px;
+}
+
+.location-txtbx {
+  text-align: center;
+  font-size: 25px;
+}
+
+.email-txtbx {
+  text-align: center;
+  font-size: 25px;
+}
+
+.username-txtbx {
+  text-align: center;
+  font-size: 25px;
+}
+.btn-join-joinpage {
+  color: #ffffff;
+  --border-color: #ffffff;
+  margin-top: 20px;
+}

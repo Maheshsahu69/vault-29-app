@@ -2,7 +2,6 @@ import React from "react";
 import "./LandingPage.css";
 import { logoFacebook } from "ionicons/icons";
 import {
-  IonApp,
   IonImg,
   IonContent,
   IonIcon,
@@ -13,15 +12,18 @@ import {
   IonText,
   IonButton,
   IonFooter,
+  IonPage,
 } from "@ionic/react";
+import { Link } from "react-router-dom";
+import topPic from "../Images/icon.png";
 
-const LandingPage: React.FC<{ pic: string }> = (props) => (
-  <IonApp>
+const LandingPage: React.FC = () => (
+  <IonPage>
     <IonContent className="bg-img">
       <IonGrid>
         <IonRow>
           <IonCol>
-            <IonImg src={props.pic} alt="topPic" className="top-img" />
+            <IonImg src={topPic} alt="topPic" className="top-img" />
           </IonCol>
         </IonRow>
         <IonRow>
@@ -61,32 +63,37 @@ const LandingPage: React.FC<{ pic: string }> = (props) => (
 
           <IonRow>
             <IonCol>
-              <IonButton
-                fill="outline"
-                expand="block"
-                className="btn-join"
-                size="large"
-                strong
-              >
-                JOIN
-              </IonButton>
+              <Link to="/joinpage" className="link-join">
+                <IonButton
+                  fill="outline"
+                  expand="block"
+                  className="btn-join"
+                  size="large"
+                  strong
+                >
+                  JOIN
+                </IonButton>
+              </Link>
             </IonCol>
             <IonCol>
-              <IonButton
-                fill="outline"
-                expand="block"
-                className="btn-login"
-                size="large"
-                strong
-              >
-                LOG IN
-              </IonButton>
+              <Link to="loginpage" className="link-login">
+                <IonButton
+                  fill="outline"
+                  expand="block"
+                  className="btn-login"
+                  size="large"
+                  strong
+                >
+                  LOG IN
+                </IonButton>
+              </Link>
             </IonCol>
           </IonRow>
         </IonGrid>
       </div>
     </IonFooter>
-  </IonApp>
+  </IonPage>
 );
 
 export default LandingPage;
+  
