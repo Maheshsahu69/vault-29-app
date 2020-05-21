@@ -28,6 +28,7 @@
 }
 .email-ion-item {
   color: #ffffff;
+  
 }
 .btn-login {
   color: #ffffff;
@@ -53,3 +54,13 @@
   color: #ffffff;
   text-decoration: none;
 }
+
+
+#divID{
+  
+  color: red;
+  border-bottom: 1px solid red;
+  border-width: 2px;
+
+}
+

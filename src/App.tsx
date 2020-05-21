@@ -3,8 +3,8 @@ import {
   IonApp,
   IonContent,
 } from "@ionic/react";
-// import { IonReactRouter } from "@ionic/react-router";
-import { Route, BrowserRouter, Switch } from "react-router-dom";
+import { IonReactRouter} from "@ionic/react-router";
+import { Route, Switch } from "react-router-dom";
 // import { ellipse, square, triangle } from 'ionicons/icons';
 // import Tab1 from './pages/Tab1';
 // import Tab2 from './pages/Tab2';
@@ -13,8 +13,6 @@ import LoginPage from "./components/LoginPage";
 import LandingPage from "./components/LandingPage";
 import JoinPage from "./components/JoinPage";
 import WineWall from './components/WineWall';
-
-// import bgImag from './Images/vault29-background.png';
 
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
@@ -38,15 +36,14 @@ const App: React.FC = () => {
   return (
     <IonApp>
       <IonContent>
-        <BrowserRouter>
+        <IonReactRouter>
         <Switch>
           <Route path="/" exact component={LandingPage} />
-          <Route path="/loginpage" exact component={LoginPage} />
-          <Route path="/wineWallpage" exact component={WineWall}/>
-          <Route path="/joinpage" exact component={JoinPage} />   
-
+          <Route path="/login" exact component={LoginPage} />
+          <Route path="/winewall" exact component={WineWall}/>
+          <Route path="/join" exact component={JoinPage} />   
           </Switch>
-        </BrowserRouter>
+        </IonReactRouter>
       </IonContent>
     </IonApp>
   );

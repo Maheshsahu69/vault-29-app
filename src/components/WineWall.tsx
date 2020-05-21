@@ -1,8 +1,7 @@
 import React from "react";
 import { IonApp, IonContent } from "@ionic/react";
 
-class WineWall extends React.Component<any, any> {
-  render() {
+const WineWall: React.FC =()=> {
     return (
       <div>
         <IonApp>
@@ -12,7 +11,7 @@ class WineWall extends React.Component<any, any> {
         </IonApp>
       </div>
     );
-  }
+
 }
 
 export default WineWall;

@@ -63,7 +63,7 @@ const LandingPage: React.FC = () => (
 
           <IonRow>
             <IonCol>
-              <Link to="/joinpage" className="link-join">
+              <Link to="/join" className="link-join">
                 <IonButton
                   fill="outline"
                   expand="block"
@@ -76,7 +76,7 @@ const LandingPage: React.FC = () => (
               </Link>
             </IonCol>
             <IonCol>
-              <Link to="loginpage" className="link-login">
+              <Link to="login" className="link-login">
                 <IonButton
                   fill="outline"
                   expand="block"
