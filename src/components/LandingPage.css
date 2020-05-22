@@ -1,34 +1,38 @@
-.bg-img{
-    
-     --background: #fff url('../Images/vault29-background.png') no-repeat center center / cover;  
-
+.bg-img {
+  --background: #fff url("../Images/vault29-background.png") no-repeat center
+    center / cover;
 }
 
-.top-img{
-    height: 140px;
-    padding-top: 30px;
-    padding-bottom: 10px;
+.top-img {
+  height: 140px;
+  padding-top: 30px;
+  padding-bottom: 10px;
 }
 
-.vault-txt{
-    text-align: center;
-    color: #ffffff;
-    font-weight: bold;
-    font-size: 40px;
+.vault-txt {
+  text-align: center;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 40px;
 }
-.txt-title{
-    text-align: center;
-    color: #ffffff;
-    font-size: 25px;
+.txt-title {
+  text-align: center;
+  color: #ffffff;
+  font-size: 25px;
 }
-.btn-facebook , .btn-join, .btn-login{
-    color:#ffffff;
-    --border-color	:#ffffff;
-    
+.btn-facebook,
+.btn-join,
+.btn-login {
+  color: #ffffff;
+  --border-color: #ffffff;
 }
 
-.btn-background{
-    background-color: #995cc7;
-    border-radius: 5px;
-
+.btn-background {
+  background-color: #995cc7;
+  border-radius: 5px;
+}
+.link-login,
+.link-join {
+  color: #ffffff;
+  text-decoration: none;
 }
