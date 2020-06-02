@@ -17,9 +17,9 @@ import {
   camera,
   starOutline,
 } from 'ionicons/icons';
-import Tab1 from './pages/Tab1';
-import Tab2 from './pages/Tab2';
-import Tab3 from './pages/Tab3';
+import WineWall from './pages/WineWall';
+import News from './pages/News';
+import Nearby from './pages/Nearby';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -45,28 +45,36 @@ const App: React.FC = () => (
     <IonReactRouter>
       <IonTabs>
         <IonRouterOutlet>
-          <Route path="/tab1" component={Tab1} exact={true} />
-          <Route path="/tab2" component={Tab2} exact={true} />
-          <Route path="/tab3" component={Tab3} />
-          <Route path="/" render={() => <Redirect to="/tab1" />} exact={true} />
+          <Route path="/winewall" exact>
+            <WineWall />
+          </Route>
+          <Route path="/news" exact>
+            <News />
+          </Route>
+          <Route path="/nearby" exact>
+            <Nearby />
+          </Route>
+          <Route path="/" exact>
+            <Redirect to="/winewall" />
+          </Route>
         </IonRouterOutlet>
         <IonTabBar slot="bottom">
-          <IonTabButton tab="tab1" href="/tab1">
+          <IonTabButton tab="tab1" href="/winewall">
             <IonIcon icon={wineOutline} />
             <IonLabel>WINE WALL</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="tab2" href="/tab2">
+          <IonTabButton tab="tab2" href="/news">
             <IonIcon icon={newspaperOutline} />
             <IonLabel>NEWS</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="tab2" href="/tab2">
+          <IonTabButton tab="tab3" href="/post">
             <IonIcon icon={camera} />
           </IonTabButton>
-          <IonTabButton tab="tab3" href="/tab3">
+          <IonTabButton tab="tab4" href="/nearby">
             <IonIcon icon={locationOutline} />
             <IonLabel>NEARBY</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="tab3" href="/tab3">
+          <IonTabButton tab="tab5" href="/favorite">
             <IonIcon icon={starOutline} />
             <IonLabel>FAVORITES</IonLabel>
           </IonTabButton>
