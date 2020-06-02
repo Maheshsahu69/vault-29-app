@@ -25,6 +25,7 @@
 .btn-login {
   color: #ffffff;
   --border-color: #ffffff;
+  --border-width: 1px;
 }
 
 .btn-background {
