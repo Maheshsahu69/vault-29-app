@@ -39,8 +39,9 @@ const LoginPage: React.FC = (props) => {
 
     let response = await result.json();
     console.log("response", response);
-    localStorage.setItem("token", JSON.stringify(response.token));
-    const token = localStorage.getItem("token");
+    localStorage.setItem("token", (response.token));
+    // let token = localStorage.getItem("token");
+  
 
     const successVar = response.success;
     if (successVar === "true") {
