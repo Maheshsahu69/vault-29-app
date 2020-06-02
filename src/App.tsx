@@ -20,6 +20,8 @@ import {
 import WineWall from './pages/WineWall';
 import News from './pages/News';
 import Nearby from './pages/Nearby';
+import Favorite from './pages/Favorite';
+import Post from './pages/Post';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -51,8 +53,14 @@ const App: React.FC = () => (
           <Route path="/news" exact>
             <News />
           </Route>
+          <Route path="/post" exact>
+            <Post />
+          </Route>
           <Route path="/nearby" exact>
             <Nearby />
+          </Route>
+          <Route path="/favorite" exact>
+            <Favorite />
           </Route>
           <Route path="/" exact>
             <Redirect to="/winewall" />
