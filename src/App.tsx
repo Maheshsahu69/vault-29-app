@@ -1,27 +1,11 @@
 import React from 'react';
-import { Redirect, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import {
-  IonApp,
-  IonIcon,
-  IonLabel,
-  IonRouterOutlet,
-  IonTabBar,
-  IonTabButton,
-  IonTabs
+  IonApp, IonRouterOutlet
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import {
-  locationOutline,
-  wineOutline,
-  newspaperOutline,
-  camera,
-  starOutline,
-} from 'ionicons/icons';
-import WineWall from './pages/WineWall';
-import News from './pages/News';
-import Nearby from './pages/Nearby';
-import Favorite from './pages/Favorite';
-import Post from './pages/Post';
+
+import TabRoot from './pages/TabRoot';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -41,54 +25,21 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
+import Home from './pages/Home';
 
 const App: React.FC = () => (
   <IonApp>
     <IonReactRouter>
-      <IonTabs>
-        <IonRouterOutlet>
-          <Route path="/winewall" exact>
-            <WineWall />
-          </Route>
-          <Route path="/news" exact>
-            <News />
-          </Route>
-          <Route path="/post" exact>
-            <Post />
-          </Route>
-          <Route path="/nearby" exact>
-            <Nearby />
-          </Route>
-          <Route path="/favorite" exact>
-            <Favorite />
-          </Route>
-          <Route path="/" exact>
-            <Redirect to="/winewall" />
-          </Route>
-        </IonRouterOutlet>
-        <IonTabBar slot="bottom">
-          <IonTabButton tab="tab1" href="/winewall">
-            <IonIcon icon={wineOutline} />
-            <IonLabel>WINE WALL</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="tab2" href="/news">
-            <IonIcon icon={newspaperOutline} />
-            <IonLabel>NEWS</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="tab3" href="/post">
-            <IonIcon icon={camera} />
-          </IonTabButton>
-          <IonTabButton tab="tab4" href="/nearby">
-            <IonIcon icon={locationOutline} />
-            <IonLabel>NEARBY</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="tab5" href="/favorite">
-            <IonIcon icon={starOutline} />
-            <IonLabel>FAVORITES</IonLabel>
-          </IonTabButton>
-        </IonTabBar>
-      </IonTabs>
+      <IonRouterOutlet>
+        <Route exact path="/">
+          <Home />
+        </Route>
+        <Route>
+          <TabRoot />
+        </Route>
+      </IonRouterOutlet>
     </IonReactRouter>
+
   </IonApp>
 );
 
