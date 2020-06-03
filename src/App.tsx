@@ -28,6 +28,13 @@ import './theme/variables.css';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Alert from './components/Alert';
+import { setAccept, setAuthToken } from './utils/setCommonHeaders';
+
+setAccept();
+
+if (localStorage.token) {
+  setAuthToken(localStorage.token);
+}
 
 const App: React.FC = () => (
   <IonApp>
@@ -44,8 +51,7 @@ const App: React.FC = () => (
           <TabRoot />
         </Route>
       </IonRouterOutlet>
-    </IonReactRouter>
-
+    </IonReactRouter>``
   </IonApp>
 );
 

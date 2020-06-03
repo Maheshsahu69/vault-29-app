@@ -1,5 +1,4 @@
 import React from 'react';
-import { Redirect, Route } from 'react-router-dom';
 import {
   IonIcon,
   IonLabel,
@@ -22,29 +21,27 @@ import News from './News';
 import Nearby from './Nearby';
 import Favorite from './Favorite';
 import Post from './Post';
+import PrivateRoute from '../routing/PrivateRoute';
 
 const TabRoot: React.FC = () => {
   return (
     <IonTabs>
       <IonRouterOutlet>
-        <Route path="/winewall" exact>
+        <PrivateRoute path="/winewall" exact>
           <WineWall />
-        </Route>
-        <Route path="/news" exact>
+        </PrivateRoute>
+        <PrivateRoute path="/news" exact>
           <News />
-        </Route>
-        <Route path="/post" exact>
+        </PrivateRoute>
+        <PrivateRoute path="/post" exact>
           <Post />
-        </Route>
-        <Route path="/nearby" exact>
+        </PrivateRoute>
+        <PrivateRoute path="/nearby" exact>
           <Nearby />
-        </Route>
-        <Route path="/favorite" exact>
+        </PrivateRoute>
+        <PrivateRoute path="/favorite" exact>
           <Favorite />
-        </Route>
-        <Route path="/" exact>
-          <Redirect to="/winewall" />
-        </Route>
+        </PrivateRoute>
       </IonRouterOutlet>
       <IonTabBar slot="bottom">
         <IonTabButton tab="tab1" href="/winewall">

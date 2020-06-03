@@ -2,10 +2,20 @@ import React from 'react';
 import { IonContent, IonPage, IonTitle, IonFooter, IonButton, IonGrid, IonRow, IonCol, IonImg, IonText, IonIcon } from '@ionic/react';
 import './Home.css';
 import { logoFacebook } from 'ionicons/icons';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import logo from '../images/icon.png';
+import { useSelector } from 'react-redux';
+import { RootState } from '../reducers';
 
 const Home: React.FC = () => {
+
+  const history = useHistory();
+
+  const token = useSelector<RootState, string>(state => state.auth.token);
+
+  if (token) {
+    history.push('/winewall');
+  }
 
   return (
     <IonPage>
