@@ -1,25 +1,15 @@
-import React, { useState } from 'react';
-import { IonContent, IonPage, IonTitle, IonFooter, IonButton, IonGrid, IonRow, IonCol, IonImg, IonText, IonIcon, IonModal } from '@ionic/react';
+import React from 'react';
+import { IonContent, IonPage, IonTitle, IonFooter, IonButton, IonGrid, IonRow, IonCol, IonImg, IonText, IonIcon } from '@ionic/react';
 import './Home.css';
 import { logoFacebook } from 'ionicons/icons';
 import { Link } from 'react-router-dom';
 import logo from '../images/icon.png';
-import LoginContainer from '../components/LoginContainer';
 
 const Home: React.FC = () => {
-
-  const [showModal, setShowModal] = useState(false);
-
-  async function closeModal() {
-    await setShowModal(false);
-  }
 
   return (
     <IonPage>
       <IonContent className='bg-img'>
-        <IonModal isOpen={showModal} onDidDismiss={() => setShowModal(false)}>
-          <LoginContainer onClose={closeModal}></LoginContainer>
-        </IonModal>
         <IonGrid>
           <IonRow>
             <IonCol>
@@ -76,16 +66,17 @@ const Home: React.FC = () => {
               </Link>
             </IonCol>
             <IonCol>
-              <IonButton
-                onClick={() => setShowModal(true)}
-                fill='outline'
-                expand='block'
-                className='btn-login'
-                size='large'
-                strong
-              >
-                LOG IN
+              <Link to='/login' className='link-login'>
+                <IonButton
+                  fill='outline'
+                  expand='block'
+                  className='btn-login'
+                  size='large'
+                  strong
+                >
+                  LOG IN
                 </IonButton>
+              </Link>
             </IonCol>
           </IonRow>
         </IonGrid>
