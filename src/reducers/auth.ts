@@ -12,7 +12,7 @@ export interface AuthState {
 const initialState: AuthState = {
   loading: true,
   user: {} as User,
-  token: '',
+  token: localStorage.getItem('token') || '',
   error: ''
 }
 

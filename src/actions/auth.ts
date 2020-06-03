@@ -40,9 +40,9 @@ export const doLogin = (email: string, password: string): AppThunk => async disp
     }
   };
   try {
-    const res = await axios.post(`${API_ENDPOINT}/users/check`, { email, password }, config);
+    const res = await axios.post(`${API_ENDPOINT}/v2/user/signin`, { email, password }, config);
 
-    if (res.data.success) {
+    if (JSON.parse(res.data.success)) {
       dispatch(loginAction(res.data.user, res.data.token));
     } else {
       dispatch(setAlert(res.data.message, 'danger'));

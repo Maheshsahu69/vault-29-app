@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import logo from '../images/icon.png';
-import './LoginContainer.css';
+import './Login.css';
 import {
   IonImg,
   IonContent,
@@ -11,58 +11,33 @@ import {
   IonTitle,
   IonItem,
   IonInput,
-  IonButton,
-  IonToast,
+  IonButton
 } from '@ionic/react';
 import { Link, useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { doLogin } from '../actions/auth';
+import { setAlert } from '../actions/alert';
+import { RootState } from '../reducers';
 
-interface ContainerProps {
-  onClose: any
-}
 
-const LoginContainer: React.FC<ContainerProps> = (onClose) => {
+const Login: React.FC = () => {
   const history = useHistory();
+  const dispatch = useDispatch();
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [validationStatus, setValidationStatus] = useState(false);
-  const [validationMessage, setValidationMessage] = useState('');
-  const login = async (email: any, password: any) => {
-    const state = { email: email, password: password };
-    let result = await fetch(
-      'https://vault29-backend.innoventestech.in/v2/user/signin',
-      {
-        method: 'POST',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(state),
-      }
-    );
 
-    let response = await result.json();
-    localStorage.setItem('token', (response.token));
+  const token = useSelector<RootState, string>(state => state.auth.token);
 
-    const successVar = response.success;
-    if (successVar === 'true') {
-      history.push('/winewall');
+  if (token) {
+    history.push('/winewall');
+  }
+
+  const onLogin = () => {
+    if (email && password) {
+      dispatch(doLogin(email, password));
     } else {
-      if (response.message.email) {
-        if (response.message.email.length > 0) {
-          setValidationStatus(true);
-          setValidationMessage(response.message.email);
-        }
-      }
-
-      if (response.message === 'Email id is not registered') {
-        setValidationStatus(true);
-        setValidationMessage(response.message);
-      }
-
-      if (response.message === 'Invalid Password, Case Sensitive') {
-        setValidationStatus(true);
-        setValidationMessage(response.message);
-      }
+      dispatch(setAlert('All fields are required', 'danger'));
     }
   };
 
@@ -114,10 +89,10 @@ const LoginContainer: React.FC<ContainerProps> = (onClose) => {
                 strong
                 size='large'
                 className='btn-login'
-                onClick={() => login(email, password)}
+                onClick={() => onLogin()}
               >
                 LOG IN
-                  </IonButton>
+              </IonButton>
             </IonCol>
           </IonRow>
           <IonRow>
@@ -140,19 +115,9 @@ const LoginContainer: React.FC<ContainerProps> = (onClose) => {
             </IonCol>
           </IonRow>
         </IonGrid>
-        {validationMessage && (
-          <IonToast
-            isOpen={validationStatus}
-            onDidDismiss={() => setValidationStatus(false)}
-            message={validationMessage}
-            duration={2000}
-            position='top'
-            color='light'
-          />
-        )}
       </IonContent>
     </IonPage>
   );
 };
 
-export default LoginContainer;
+export default Login;
