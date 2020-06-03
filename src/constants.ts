@@ -1,0 +1,1 @@
+export const API_ENDPOINT = 'https://vault29-backend.innoventestech.in';
