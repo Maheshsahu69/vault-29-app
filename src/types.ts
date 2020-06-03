@@ -1,3 +1,5 @@
+import { UserType, AccountType } from "./constants";
+
 export interface User {
   id: number,
   username: string,
@@ -26,4 +28,16 @@ export interface AlertMessage {
   msg: string;
   alertType: string;
   id: string;
+}
+
+export interface JoinForm {
+  name: string,
+  username: string,
+  email: string,
+  password: string,
+  location?: string,
+  birthday?: string,
+  gender?: string,
+  user_type: UserType,
+  account_type: AccountType,
 }

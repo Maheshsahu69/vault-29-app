@@ -1,5 +1,5 @@
-import { LOGIN_SUCCESS, LOGIN_FAIL } from "./types";
-import { User } from "../types";
+import { LOGIN_SUCCESS, LOGIN_FAIL, JOIN_SUCCESS, JOIN_FAIL } from "./types";
+import { User, JoinForm } from "../types";
 import { AppThunk } from "../store";
 import axios from 'axios';
 import { API_ENDPOINT } from "../constants";
@@ -11,12 +11,23 @@ interface LoginSuccessAction {
   token: string
 }
 
+interface JoinSuccessAction {
+  type: typeof JOIN_SUCCESS,
+  user: User,
+  token: string
+}
+
 interface LoginFailAction {
   type: typeof LOGIN_FAIL,
   message: string
 }
 
-export type AuthActionTypes = LoginSuccessAction | LoginFailAction;
+interface JoinFailAction {
+  type: typeof JOIN_FAIL,
+  message: string
+}
+
+export type AuthActionTypes = LoginSuccessAction | LoginFailAction | JoinSuccessAction | JoinFailAction;
 
 const loginAction = (user: User, token: string): AuthActionTypes => {
   return {
@@ -26,9 +37,24 @@ const loginAction = (user: User, token: string): AuthActionTypes => {
   }
 }
 
+const joinAction = (user: User, token: string): AuthActionTypes => {
+  return {
+    type: JOIN_SUCCESS,
+    user,
+    token
+  }
+}
+
 const loginFailAction = (message: string): AuthActionTypes => {
   return {
     type: LOGIN_FAIL,
+    message
+  }
+}
+
+const joinFailAction = (message: string): AuthActionTypes => {
+  return {
+    type: JOIN_FAIL,
     message
   }
 }
@@ -47,6 +73,28 @@ export const doLogin = (email: string, password: string): AppThunk => async disp
     } else {
       dispatch(setAlert(res.data.message, 'danger'));
       dispatch(loginFailAction(res.data.message));
+    }
+  } catch (err) {
+    console.log(err);
+    dispatch(setAlert('Unknown error occurred. Plesae retry', 'danger'));
+    dispatch(loginFailAction('Unknown error'));
+  }
+};
+
+export const doJoin = (joinForm: JoinForm): AppThunk => async dispatch => {
+  const config = {
+    headers: {
+      'Content-type': 'application/json'
+    }
+  };
+  try {
+    const res = await axios.post(`${API_ENDPOINT}/v2/user/signup`, joinForm, config);
+
+    if (JSON.parse(res.data.success)) {
+      dispatch(joinAction(res.data.user, res.data.token));
+    } else {
+      dispatch(setAlert(res.data.message, 'danger'));
+      dispatch(joinFailAction(res.data.message));
     }
   } catch (err) {
     console.log(err);

@@ -29,6 +29,7 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Alert from './components/Alert';
 import { setAccept, setAuthToken } from './utils/setCommonHeaders';
+import Join from './pages/Join';
 
 setAccept();
 
@@ -46,6 +47,9 @@ const App: React.FC = () => (
         </Route>
         <Route exact path="/login">
           <Login />
+        </Route>
+        <Route exact path="/join">
+          <Join />
         </Route>
         <Route>
           <TabRoot />
