@@ -13,11 +13,10 @@ import {
   IonButton,
   IonList,
   IonCheckbox,
-  IonLabel,
-  IonFooter,
-  IonToolbar
+  IonLabel
 } from '@ionic/react';
 import icon from '../images/consumer-inactive.png';
+import close from '../images/close.svg';
 import { useHistory } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { doJoin } from '../actions/auth';
@@ -77,13 +76,20 @@ const Join: React.FC = () => {
     setFemaleFill('solid');
   }
 
+  const onClose = () => {
+    history.replace('/');
+  }
+
   return (
     <IonPage>
       <IonContent className='bg-img-join'>
         <IonGrid>
           <IonRow>
-            <IonCol className='ion-text-center'>
-              <IonImg src={icon} alt='topImgJoin' className='top-img-join' />
+            <IonCol size='2'>
+              <IonImg onClick={() => onClose()} src={close} alt='Close Button' className='button-close' />
+            </IonCol>
+            <IonCol size='10' className='image-add-photo'>
+              <IonImg src={icon} alt='Add Photo' className='top-img-join' />
             </IonCol>
           </IonRow>
         </IonGrid>

@@ -18,7 +18,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { doLogin } from '../actions/auth';
 import { setAlert } from '../actions/alert';
 import { RootState } from '../reducers';
-
+import close from '../images/close.svg';
 
 const Login: React.FC = () => {
   const history = useHistory();
@@ -41,13 +41,20 @@ const Login: React.FC = () => {
     }
   };
 
+  const onClose = () => {
+    history.replace('/');
+  }
+
   return (
     <IonPage>
       <IonContent className='bg-img-login'>
         <IonGrid>
           <IonRow>
-            <IonCol className='ion-padding'>
-              <IonImg src={logo} alt='topPic' className='top-img-login' />
+            <IonCol size='2'>
+              <IonImg onClick={() => onClose()} src={close} alt='Close Button' className='button-close' />
+            </IonCol>
+            <IonCol size='10' className='image-add-photo'>
+              <IonImg src={logo} alt='Vault29 Logo' className='top-img-login' />
             </IonCol>
           </IonRow>
           <IonRow>

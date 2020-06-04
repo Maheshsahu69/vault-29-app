@@ -2,9 +2,19 @@
   --background: #fff url("../images/vault29-blurred-background.jpg") no-repeat
     center center / cover;
 }
+
+.button-close {
+  width: 50px;
+}
+
+.image-add-photo {
+  padding-right: 17%;
+}
+
 .top-img-join {
   height: 100px;
 }
+
 #add-photo-txt {
   color: #ffffff;
   font-weight: bold;
