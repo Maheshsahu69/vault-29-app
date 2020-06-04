@@ -13,7 +13,8 @@ import {
   IonButton,
   IonList,
   IonCheckbox,
-  IonLabel
+  IonLabel,
+  IonDatetime
 } from '@ionic/react';
 import icon from '../images/consumer-inactive.png';
 import close from '../images/close.png';
@@ -24,6 +25,7 @@ import { JoinForm } from '../types';
 import { UserType, AccountType } from '../constants';
 import { setAlert } from '../actions/alert';
 import { RootState } from '../reducers';
+import moment from 'moment';
 
 const Join: React.FC = () => {
   const history = useHistory();
@@ -35,8 +37,13 @@ const Join: React.FC = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [gender, setGender] = useState('');
+  const [birthday, setBirthday] = useState('');
+  const [location, setLocation] = useState('');
   const [maleFill, setMaleFill] = useState<"clear" | "outline" | "solid" | "default">('outline');
   const [femaleFill, setFemaleFill] = useState<"clear" | "outline" | "solid" | "default">('outline');
+
+  const maxDate = moment().subtract(18, 'years').format('YYYY-MM-DD');
+  const minDate = moment().subtract(100, 'years').format('YYYY-MM-DD');
 
   const token = useSelector<RootState, string>(state => state.auth.token);
   if (token) {
@@ -52,6 +59,8 @@ const Join: React.FC = () => {
           name,
           email,
           gender,
+          location,
+          date_of_birth: birthday,
           user_type: UserType.Consumer,
           account_type: AccountType.Email
         };
@@ -151,14 +160,16 @@ const Join: React.FC = () => {
               placeholder='Location'
               className='location-txtbx'
               type='text'
+              onIonChange={(e) => setLocation(e.detail.value!)}
+              value={location}
             ></IonInput>
           </IonItem>
           <IonItem color='transparent' className='location-item'>
-            <IonInput
-              placeholder='Birthday'
-              className='location-txtbx'
-              type='text'
-            ></IonInput>
+            <IonDatetime placeholder='Birthday' value={birthday} name='birthday'
+              className='birthday-txt'
+              displayFormat="DD MMM YYYY" min={minDate} max={maxDate}
+              onIonChange={e => setBirthday(e.detail.value!)} >
+            </IonDatetime>
           </IonItem>
         </IonList>
         <IonGrid>

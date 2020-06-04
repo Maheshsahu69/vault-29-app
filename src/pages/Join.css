@@ -65,3 +65,9 @@
   margin-top: 10px;
   --border-width: 1px;
 }
+
+.birthday-txt {
+  --placeholder-color: #bca6c7;
+  --padding-start: 44%;
+  font-size: 20px;
+}

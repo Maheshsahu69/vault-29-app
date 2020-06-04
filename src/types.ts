@@ -36,7 +36,7 @@ export interface JoinForm {
   email: string,
   password: string,
   location?: string,
-  birthday?: string,
+  date_of_birth?: string,
   gender?: string,
   user_type: UserType,
   account_type: AccountType,
