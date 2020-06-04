@@ -16,7 +16,7 @@ import {
   IonLabel
 } from '@ionic/react';
 import icon from '../images/consumer-inactive.png';
-import close from '../images/close.svg';
+import close from '../images/close.png';
 import { useHistory } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { doJoin } from '../actions/auth';

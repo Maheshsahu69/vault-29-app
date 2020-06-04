@@ -18,7 +18,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { doLogin } from '../actions/auth';
 import { setAlert } from '../actions/alert';
 import { RootState } from '../reducers';
-import close from '../images/close.svg';
+import close from '../images/close.png';
 
 const Login: React.FC = () => {
   const history = useHistory();
