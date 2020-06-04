@@ -35,7 +35,8 @@
 .location-item,
 .email-item {
   color: #ffffff;
-  padding-bottom: 5px;
+  padding: 0 20px;
+  /* padding-bottom: 5px; */
   text-align: center;
 }
 .name-txtbx,
@@ -51,6 +52,6 @@
 .btn-join-joinpage {
   color: #ffffff;
   --border-color: #ffffff;
-  margin-top: 20px;
+  margin-top: 10px;
   --border-width: 1px;
 }
