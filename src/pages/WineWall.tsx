@@ -1,9 +1,20 @@
-import React from 'react';
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
-import ExploreContainer from '../components/ExploreContainer';
+import React, { useEffect } from 'react';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonSpinner } from '@ionic/react';
 import './WineWall.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { getPosts } from '../actions/post';
+import { RootState } from '../reducers';
+import WineList from '../components/WineList';
 
 const WineWall: React.FC = () => {
+  const dispatch = useDispatch();
+  const loading = useSelector<RootState, boolean>(state => state.post.loading);
+
+  useEffect(() => {
+    dispatch(getPosts(0, 40));
+    // eslint-disable-next-line
+  }, []);
+
   return (
     <IonPage>
       <IonHeader>
@@ -12,12 +23,7 @@ const WineWall: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Wine Wall</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-        <ExploreContainer name="Wine Wall page" />
+        {loading ? <IonSpinner /> : <WineList />}
       </IonContent>
     </IonPage>
   );

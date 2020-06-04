@@ -41,3 +41,17 @@ export interface JoinForm {
   user_type: UserType,
   account_type: AccountType,
 }
+
+export interface Post {
+  id: number,
+  name: string,
+  venue: string,
+  city: string,
+  thumbnail_url: string,
+  photo_url: string,
+  created_at: string,
+  comment: string,
+  user_id: number,
+  emoji: string,
+  location_id: number
+}
