@@ -14,7 +14,7 @@ const Home: React.FC = () => {
   const token = useSelector<RootState, string>(state => state.auth.token);
 
   if (token) {
-    history.push('/winewall');
+    history.push('/posts');
   }
 
   return (

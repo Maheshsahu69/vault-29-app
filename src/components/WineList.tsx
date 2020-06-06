@@ -28,7 +28,7 @@ const WineList: React.FC = () => {
           <IonCol size="12" size-sm>
             {posts.map(post =>
               <img className='gallery-post' key={post.id} src={`${API_ENDPOINT}/${post.thumbnail_url}`}
-                alt={post.comment} onClick={() => history.push(`/post/${post.id}`)} />
+                alt={post.comment} onClick={() => history.push(`/posts/${post.id}`)} />
             )}
           </IonCol>
         </IonRow>

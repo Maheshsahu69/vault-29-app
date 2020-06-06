@@ -9,13 +9,13 @@ import logo from '../images/icon.png';
 import { useParams } from 'react-router';
 
 const PostDetail: React.FC = () => {
-  const { post_id } = useParams();
+  const { id } = useParams();
   const user_id = useSelector<RootState, number>(state => state.auth.user.id);
   const dispatch = useDispatch();
   const isDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
 
   useEffect(() => {
-    dispatch(getPostDetail(post_id, user_id));
+    dispatch(getPostDetail(id, user_id));
     // eslint-disable-next-line
   }, []);
 

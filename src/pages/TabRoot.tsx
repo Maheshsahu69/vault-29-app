@@ -28,16 +28,16 @@ const TabRoot: React.FC = () => {
   return (
     <IonTabs>
       <IonRouterOutlet>
-        <PrivateRoute path="/winewall" exact>
+        <PrivateRoute path="/posts" exact>
           <WineWall />
         </PrivateRoute>
         <PrivateRoute path="/news" exact>
           <News />
         </PrivateRoute>
-        <PrivateRoute path="/post" exact>
+        <PrivateRoute path="/photo" exact>
           <Post />
         </PrivateRoute>
-        <PrivateRoute path="/post/:id" exact>
+        <PrivateRoute path="/posts/:id" exact>
           <PostDetail />
         </PrivateRoute>
         <PrivateRoute path="/nearby" exact>
@@ -48,7 +48,7 @@ const TabRoot: React.FC = () => {
         </PrivateRoute>
       </IonRouterOutlet>
       <IonTabBar slot="bottom">
-        <IonTabButton tab="tab1" href="/winewall">
+        <IonTabButton tab="tab1" href="/posts">
           <IonIcon icon={wineOutline} />
           <IonLabel>WINE WALL</IonLabel>
         </IonTabButton>
@@ -56,7 +56,7 @@ const TabRoot: React.FC = () => {
           <IonIcon icon={newspaperOutline} />
           <IonLabel>NEWS</IonLabel>
         </IonTabButton>
-        <IonTabButton tab="tab3" href="/post">
+        <IonTabButton tab="tab3" href="/camera">
           <IonIcon icon={camera} />
         </IonTabButton>
         <IonTabButton tab="tab4" href="/nearby">
