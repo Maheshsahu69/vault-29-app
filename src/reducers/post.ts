@@ -30,7 +30,7 @@ export default function (state = initialState, action: PostActionTypes) {
     case GET_POSTS_COMPLETE:
       return { ...state, loadMore: false }
     case GET_POST_DETAIL_SUCCESS:
-      return { ...state, post: action.post };
+      return { ...state, post: action.post, loading: false };
     case GET_POST_DETAIL_FAIL:
       return { ...state, error: action.message };
     default:

@@ -56,6 +56,17 @@ export interface Post {
   location_id: number
 }
 
+export interface PostAttribute {
+  favourite: boolean,
+  blocked: boolean,
+  liked: boolean,
+  like_id?: number,
+  like_count: number,
+  comment_count: number,
+  photo_url?: string
+}
+
 export interface PostDetail extends Post {
-  comments: string
+  latest_comments: string,
+  attributes: PostAttribute
 }

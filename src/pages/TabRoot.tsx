@@ -20,9 +20,9 @@ import WineWall from './WineWall';
 import News from './News';
 import Nearby from './Nearby';
 import Favorite from './Favorite';
-import Post from './Post';
+import Photo from './Photo';
 import PrivateRoute from '../routing/PrivateRoute';
-import PostDetail from './PostDetail';
+import Post from './Post';
 
 const TabRoot: React.FC = () => {
   return (
@@ -35,10 +35,10 @@ const TabRoot: React.FC = () => {
           <News />
         </PrivateRoute>
         <PrivateRoute path="/photo" exact>
-          <Post />
+          <Photo />
         </PrivateRoute>
         <PrivateRoute path="/posts/:id" exact>
-          <PostDetail />
+          <Post />
         </PrivateRoute>
         <PrivateRoute path="/nearby" exact>
           <Nearby />
