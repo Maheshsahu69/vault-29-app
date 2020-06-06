@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { IonContent, IonHeader, IonPage, IonToolbar, IonAvatar, IonBackButton, IonButtons, IonCard, IonSpinner, IonText, IonItem, IonIcon, IonGrid, IonRow, IonCol, IonCardContent } from '@ionic/react';
+import { IonContent, IonHeader, IonPage, IonToolbar, IonAvatar, IonBackButton, IonButtons, IonCard, IonSpinner, IonText, IonItem, IonIcon, IonGrid, IonRow, IonCol, IonCardContent, IonLabel } from '@ionic/react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getPostDetail } from '../actions/post';
 import { RootState } from '../reducers';
@@ -10,6 +10,7 @@ import { PostDetail } from '../types';
 import { API_ENDPOINT } from '../constants';
 import { locationOutline, timeOutline, heartOutline, chatbubbleEllipsesOutline, starOutline, ellipsisVerticalOutline } from 'ionicons/icons';
 import moment from 'moment';
+import './Post.css';
 
 const Post: React.FC = () => {
   const { id } = useParams();
@@ -42,28 +43,23 @@ const Post: React.FC = () => {
           (<IonCard>
             <IonGrid>
               <IonRow>
-                <IonCol size='3'>
-                  <IonAvatar>
-                    <img alt='Post User Profile' src={`${API_ENDPOINT}/${post.thumbnail_url}`} />
-                  </IonAvatar>
+                <IonCol>
+                  <IonItem>
+                    <IonAvatar slot='start'>
+                      <img alt='Post User Profile' src={`${API_ENDPOINT}/${post.thumbnail_url}`} />
+                    </IonAvatar>
+                    <IonLabel>
+                      <IonText><h1>{post.name}</h1></IonText>
+                      <IonText><span className='icon-location'><IonIcon slot='start' src={locationOutline} /></span>{post.venue}</IonText>
+                    </IonLabel>
+                  </IonItem>
                 </IonCol>
-                <IonCol size='6'>
-                  <IonRow>
-                    <IonItem>
-                      <IonText><h3>{post.name}</h3></IonText>
-                    </IonItem>
-                  </IonRow>
-                  <IonRow>
-                    <IonItem>
-                      <IonIcon slot='start' src={locationOutline} />
-                      <p>{post.venue}</p>
-                    </IonItem>
-                  </IonRow>
-                </IonCol>
-                <IonCol size='3'>
+                <IonCol size='auto'>
                   <IonItem>
                     <IonIcon slot='start' src={timeOutline} />
-                    <p>{moment(post.created_at).fromNow()}</p>
+                    <IonLabel className='ion-text-wrap'>
+                      {moment(post.created_at).fromNow()}
+                    </IonLabel>
                   </IonItem>
                 </IonCol>
               </IonRow>
