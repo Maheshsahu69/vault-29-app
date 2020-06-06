@@ -22,6 +22,7 @@ import Nearby from './Nearby';
 import Favorite from './Favorite';
 import Post from './Post';
 import PrivateRoute from '../routing/PrivateRoute';
+import PostDetail from './PostDetail';
 
 const TabRoot: React.FC = () => {
   return (
@@ -35,6 +36,9 @@ const TabRoot: React.FC = () => {
         </PrivateRoute>
         <PrivateRoute path="/post" exact>
           <Post />
+        </PrivateRoute>
+        <PrivateRoute path="/post/:id" exact>
+          <PostDetail />
         </PrivateRoute>
         <PrivateRoute path="/nearby" exact>
           <Nearby />

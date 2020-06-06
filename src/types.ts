@@ -55,3 +55,7 @@ export interface Post {
   emoji: string,
   location_id: number
 }
+
+export interface PostDetail extends Post {
+  comments: string
+}

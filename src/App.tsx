@@ -30,12 +30,12 @@ import Login from './pages/Login';
 import Alert from './components/Alert';
 import { setAccept, setAuthToken } from './utils/setCommonHeaders';
 import Join from './pages/Join';
+import { loadState } from './utils/localStorage';
 
 setAccept();
 
-if (localStorage.token) {
-  setAuthToken(localStorage.token);
-}
+const token = loadState('token');
+token && setAuthToken(token);
 
 const App: React.FC = () => (
   <IonApp>

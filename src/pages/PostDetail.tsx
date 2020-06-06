@@ -1,21 +1,21 @@
 import React, { useEffect } from 'react';
-import { IonContent, IonHeader, IonPage, IonToolbar, IonSpinner, IonAvatar } from '@ionic/react';
-import './WineWall.css';
+import { IonContent, IonHeader, IonPage, IonToolbar, IonAvatar } from '@ionic/react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getPosts } from '../actions/post';
+import { getPostDetail } from '../actions/post';
 import { RootState } from '../reducers';
-import WineList from '../components/WineList';
 import logoWhite from '../images/logo-white.png';
 import logoBlack from '../images/logo-black.png';
 import logo from '../images/icon.png';
+import { useParams } from 'react-router';
 
-const WineWall: React.FC = () => {
+const PostDetail: React.FC = () => {
+  const { post_id } = useParams();
+  const user_id = useSelector<RootState, number>(state => state.auth.user.id);
   const dispatch = useDispatch();
-  const loading = useSelector<RootState, boolean>(state => state.post.loading);
   const isDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
 
   useEffect(() => {
-    dispatch(getPosts(0, 40));
+    dispatch(getPostDetail(post_id, user_id));
     // eslint-disable-next-line
   }, []);
 
@@ -33,10 +33,10 @@ const WineWall: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent>
-        {loading ? <IonSpinner /> : <WineList />}
+        <p>Post Detail</p>
       </IonContent>
     </IonPage>
   );
 };
 
-export default WineWall;
+export default PostDetail;

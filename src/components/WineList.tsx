@@ -6,9 +6,12 @@ import { IonInfiniteScroll, IonInfiniteScrollContent, IonGrid, IonRow, IonCol } 
 import { Post } from '../types';
 import { API_ENDPOINT } from '../constants';
 import './WineList.css';
+import { useHistory } from 'react-router';
 
 const WineList: React.FC = () => {
   const dispatch = useDispatch();
+
+  const history = useHistory();
 
   const loadMore = useSelector<RootState, boolean>(state => state.post.loadMore);
   const posts = useSelector<RootState, Post[]>(state => state.post.posts);
@@ -25,7 +28,7 @@ const WineList: React.FC = () => {
           <IonCol size="12" size-sm>
             {posts.map(post =>
               <img className='gallery-post' key={post.id} src={`${API_ENDPOINT}/${post.thumbnail_url}`}
-                alt={post.comment} />
+                alt={post.comment} onClick={() => history.push(`/post/${post.id}`)} />
             )}
           </IonCol>
         </IonRow>

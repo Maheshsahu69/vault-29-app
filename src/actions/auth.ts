@@ -4,6 +4,8 @@ import { AppThunk } from "../store";
 import axios from 'axios';
 import { API_ENDPOINT } from "../constants";
 import { setAlert } from "./alert";
+import { setAuthToken } from "../utils/setCommonHeaders";
+import { saveState } from "../utils/localStorage";
 
 interface LoginSuccessAction {
   type: typeof LOGIN_SUCCESS,
@@ -69,13 +71,18 @@ export const doLogin = (email: string, password: string): AppThunk => async disp
     const res = await axios.post(`${API_ENDPOINT}/v2/user/signin`, { email, password }, config);
 
     if (JSON.parse(res.data.success)) {
+      setAuthToken(res.data.token);
+      saveState('token', res.data.token);
+      saveState('user', res.data.user);
       dispatch(loginAction(res.data.user, res.data.token));
     } else {
+      localStorage.removeItem('token');
       dispatch(setAlert(res.data.message, 'danger'));
       dispatch(loginFailAction(res.data.message));
     }
   } catch (err) {
     console.log(err);
+    localStorage.removeItem('token');
     dispatch(setAlert('Unknown error occurred. Plesae retry', 'danger'));
     dispatch(loginFailAction('Unknown error'));
   }
@@ -91,6 +98,9 @@ export const doJoin = (joinForm: JoinForm): AppThunk => async dispatch => {
     const res = await axios.post(`${API_ENDPOINT}/v2/user/signup`, joinForm, config);
 
     if (JSON.parse(res.data.success)) {
+      setAuthToken(res.data.token);
+      saveState('token', res.data.token);
+      saveState('user', res.data.user);
       dispatch(joinAction(res.data.user, res.data.token));
     } else {
       dispatch(setAlert(res.data.message, 'danger'));
