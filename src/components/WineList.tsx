@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../reducers';
-import { getPosts } from '../actions/post';
+import { getPosts, fetchPostAction } from '../actions/post';
 import { IonInfiniteScroll, IonInfiniteScrollContent, IonGrid, IonRow, IonCol } from '@ionic/react';
 import { Post } from '../types';
 import { API_ENDPOINT } from '../constants';
@@ -21,6 +21,11 @@ const WineList: React.FC = () => {
     ($event.target as HTMLIonInfiniteScrollElement).complete();
   }
 
+  const onPostDetails = (id: number) => {
+    dispatch(fetchPostAction());
+    history.push(`/posts/${id}`);
+  }
+
   return (
     <>
       <IonGrid>
@@ -28,7 +33,7 @@ const WineList: React.FC = () => {
           <IonCol size="12" size-sm>
             {posts.map(post =>
               <img className='gallery-post' key={post.id} src={`${API_ENDPOINT}/${post.thumbnail_url}`}
-                alt={post.comment} onClick={() => history.push(`/posts/${post.id}`)} />
+                alt={post.comment} onClick={() => onPostDetails(post.id)} />
             )}
           </IonCol>
         </IonRow>

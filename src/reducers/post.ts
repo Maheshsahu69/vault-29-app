@@ -1,6 +1,6 @@
 import { Post, PostDetail } from '../types';
 import { PostActionTypes } from '../actions/post';
-import { GET_POSTS_SUCCESS, GET_POSTS_FAIL, GET_POSTS_COMPLETE, GET_POST_DETAIL_SUCCESS, GET_POST_DETAIL_FAIL } from '../actions/types';
+import { GET_POSTS_SUCCESS, GET_POSTS_FAIL, GET_POSTS_COMPLETE, GET_POST_DETAIL_SUCCESS, GET_POST_DETAIL_FAIL, SEARCH_POST_SUCCESS, FETCH_POST } from '../actions/types';
 
 export interface PostState {
   loading: boolean,
@@ -20,6 +20,8 @@ const initialState: PostState = {
 
 export default function (state = initialState, action: PostActionTypes) {
   switch (action.type) {
+    case FETCH_POST:
+      return { ...state, loading: true };
     case GET_POSTS_SUCCESS:
       if (action.offset === 0) {
         return { ...state, posts: action.posts, loadMore: true, loading: false };
@@ -33,6 +35,8 @@ export default function (state = initialState, action: PostActionTypes) {
       return { ...state, post: action.post, loading: false };
     case GET_POST_DETAIL_FAIL:
       return { ...state, error: action.message };
+    case SEARCH_POST_SUCCESS:
+      return { ...state, posts: action.posts, loading: false };
     default:
       return state;
   }
