@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { IonContent, IonHeader, IonPage, IonToolbar, IonSpinner, IonAvatar, IonButtons, IonButton, IonIcon, IonItem, IonSearchbar } from '@ionic/react';
 import './WineWall.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { getPosts, searchPosts } from '../actions/post';
+import { getPosts, searchQueryAction } from '../actions/post';
 import { RootState } from '../reducers';
 import WineList from '../components/WineList';
 import logoWhite from '../images/logo-white.png';
@@ -10,11 +10,14 @@ import logoBlack from '../images/logo-black.png';
 import logo from '../images/icon.png';
 import { searchOutline } from 'ionicons/icons';
 import { setAlert } from '../actions/alert';
+import { useHistory } from 'react-router';
+import { Post } from '../types';
 
 const WineWall: React.FC = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const loading = useSelector<RootState, boolean>(state => state.post.loading);
-  const user_id = useSelector<RootState, number>(state => state.auth.user.id);
+  const posts = useSelector<RootState, Post[]>(state => state.post.posts);
   const isDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
   const [query, setQuery] = useState('');
   const [searchEnabled, setSearchEnabled] = useState(false);
@@ -26,8 +29,9 @@ const WineWall: React.FC = () => {
 
   const onSearchClicked = (e: any) => {
     e.preventDefault();
+    dispatch(searchQueryAction(query));
     if (query.length > 2) {
-      dispatch(searchPosts(query, user_id));
+      history.push('/search');
     } else {
       dispatch(setAlert('Enter at least 3 characters', 'danger'));
     }
@@ -65,7 +69,7 @@ const WineWall: React.FC = () => {
             <IonButton fill='clear' onClick={e => onSearchClicked(e)}><IonIcon slot='icon-only' icon={searchOutline}></IonIcon></IonButton>
           </IonItem>
         }
-        {loading ? <IonSpinner /> : <WineList />}
+        {loading && posts.length < 0 ? <IonSpinner /> : <WineList />}
       </IonContent>
     </IonPage>
   );

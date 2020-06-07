@@ -32,6 +32,8 @@ import { setAccept, setAuthToken } from './utils/setCommonHeaders';
 import Join from './pages/Join';
 import { loadState } from './utils/localStorage';
 import PublicRoute from './routing/PublicRoute';
+import PrivateRoute from './routing/PrivateRoute';
+import Search from './pages/Search';
 
 setAccept();
 
@@ -52,6 +54,9 @@ const App: React.FC = () => (
         <PublicRoute exact path="/join">
           <Join />
         </PublicRoute>
+        <PrivateRoute exact path="/search">
+          <Search />
+        </PrivateRoute>
         <Route>
           <TabRoot />
         </Route>

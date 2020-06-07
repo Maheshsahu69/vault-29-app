@@ -2,7 +2,7 @@ import { AppThunk } from "../store";
 import axios from 'axios';
 import { API_ENDPOINT } from "../constants";
 import { setAlert } from "./alert";
-import { GET_POSTS_SUCCESS, GET_POSTS_FAIL, GET_POSTS_COMPLETE, GET_POST_DETAIL_SUCCESS, GET_POST_DETAIL_FAIL, SEARCH_POST_SUCCESS, FETCH_POST } from "./types";
+import { GET_POSTS_SUCCESS, GET_POSTS_FAIL, GET_POSTS_COMPLETE, GET_POST_DETAIL_SUCCESS, GET_POST_DETAIL_FAIL, SEARCH_POST_SUCCESS, FETCH_POST, SEARCH_QUERY } from "./types";
 import { Post, PostDetail } from "../types";
 
 interface FetchPost {
@@ -36,11 +36,17 @@ interface PostsComplete {
 
 interface SearchPostSuccess {
   type: typeof SEARCH_POST_SUCCESS,
-  posts: Post[]
+  posts: PostDetail[],
+  offset: number
+}
+
+interface SearchQuery {
+  type: typeof SEARCH_QUERY,
+  query: string
 }
 
 export type PostActionTypes = FetchPost | PostsFailAction | PostsSuccessAction | PostsComplete |
-  PostDetailAction | PostDetailFail | SearchPostSuccess;
+  PostDetailAction | PostDetailFail | SearchPostSuccess | SearchQuery;
 
 
 export const fetchPostAction = (): PostActionTypes => {
@@ -57,10 +63,11 @@ const postsSuccessAction = (posts: Post[], offset: number): PostActionTypes => {
   }
 }
 
-const searchPostSuccessAction = (posts: Post[]): PostActionTypes => {
+const searchPostSuccessAction = (posts: PostDetail[], offset: number): PostActionTypes => {
   return {
     type: SEARCH_POST_SUCCESS,
-    posts
+    posts,
+    offset
   }
 }
 
@@ -85,6 +92,19 @@ const postDetailFailAction = (message: string): PostActionTypes => {
   }
 }
 
+export const searchQueryAction = (query: string): PostActionTypes => {
+  return {
+    type: SEARCH_QUERY,
+    query
+  }
+}
+
+const postCompleteAction = (): PostActionTypes => {
+  return {
+    type: GET_POSTS_COMPLETE
+  }
+}
+
 export const getPosts = (offset = 0, limit = 20): AppThunk => async dispatch => {
   dispatch(fetchPostAction());
   try {
@@ -98,6 +118,7 @@ export const getPosts = (offset = 0, limit = 20): AppThunk => async dispatch => 
     if (JSON.parse(res.data.success)) {
       dispatch(postsSuccessAction(res.data.userData, offset));
     } else {
+      dispatch(postCompleteAction());
       dispatch(setAlert(res.data.message, 'danger'));
       dispatch(postsFailAction(res.data.message));
     }
@@ -121,8 +142,9 @@ export const searchPosts = (query: string, user_id: number, offset = 0, limit = 
     });
 
     if (res.data.success) {
-      dispatch(searchPostSuccessAction(res.data.data));
+      dispatch(searchPostSuccessAction(res.data.data, offset));
     } else {
+      dispatch(postCompleteAction());
       dispatch(setAlert(res.data.message, 'danger'));
       dispatch(postsFailAction(res.data.message));
     }
