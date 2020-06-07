@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import logo from '../images/icon.png';
 import './Login.css';
 import {
@@ -21,17 +21,18 @@ import { RootState } from '../reducers';
 import close from '../images/close.png';
 
 const Login: React.FC = () => {
+  const token = useSelector<RootState, string>(state => state.auth.token);
+  useEffect(() => {
+    if (token) {
+      history.push('/posts');
+    }
+    // eslint-disable-next-line
+  }, [token]);
   const history = useHistory();
   const dispatch = useDispatch();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
-  const token = useSelector<RootState, string>(state => state.auth.token);
-
-  if (token) {
-    history.push('/posts');
-  }
 
   const onLogin = () => {
     if (email && password) {

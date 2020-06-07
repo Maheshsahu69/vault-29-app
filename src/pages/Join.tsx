@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Join.css';
 import {
   IonImg,
@@ -28,6 +28,13 @@ import { RootState } from '../reducers';
 import moment from 'moment';
 
 const Join: React.FC = () => {
+  const token = useSelector<RootState, string>(state => state.auth.token);
+  useEffect(() => {
+    if (token) {
+      history.push('/posts');
+    }
+    // eslint-disable-next-line
+  }, [token]);
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -44,11 +51,6 @@ const Join: React.FC = () => {
 
   const maxDate = moment().subtract(18, 'years').format('YYYY-MM-DD');
   const minDate = moment().subtract(100, 'years').format('YYYY-MM-DD');
-
-  const token = useSelector<RootState, string>(state => state.auth.token);
-  if (token) {
-    history.push('/posts');
-  }
 
   const onJoin = () => {
     if (username && name && email && password && confirmPassword) {

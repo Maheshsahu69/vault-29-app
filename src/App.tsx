@@ -31,6 +31,7 @@ import Alert from './components/Alert';
 import { setAccept, setAuthToken } from './utils/setCommonHeaders';
 import Join from './pages/Join';
 import { loadState } from './utils/localStorage';
+import PublicRoute from './routing/PublicRoute';
 
 setAccept();
 
@@ -42,15 +43,15 @@ const App: React.FC = () => (
     <Alert />
     <IonReactRouter>
       <IonRouterOutlet>
-        <Route exact path="/">
+        <PublicRoute exact path="/">
           <Home />
-        </Route>
-        <Route exact path="/login">
+        </PublicRoute>
+        <PublicRoute exact path="/login">
           <Login />
-        </Route>
-        <Route exact path="/join">
+        </PublicRoute>
+        <PublicRoute exact path="/join">
           <Join />
-        </Route>
+        </PublicRoute>
         <Route>
           <TabRoot />
         </Route>
