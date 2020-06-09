@@ -3,12 +3,13 @@ import { IonContent, IonPage, IonAvatar, IonBackButton, IonSpinner, IonText, Ion
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../reducers';
 import { useParams } from 'react-router';
-import { User } from '../types';
+import { User, PostDetail } from '../types';
 import { API_ENDPOINT } from '../constants';
 import { locationOutline } from 'ionicons/icons';
 import './Profile.css';
-import { getProfile } from '../actions/profile';
+import { getProfile, getUserPosts } from '../actions/profile';
 import avatar from '../images/avatar-placeholder.png';
+import ProfileList from '../components/ProfileList';
 
 const Profile: React.FC = () => {
   const profile = useSelector<RootState, User>(state => state.profile.profile);
@@ -16,9 +17,11 @@ const Profile: React.FC = () => {
   const user_id = useSelector<RootState, number>(state => state.auth.user.id);
   const dispatch = useDispatch();
   const loading = useSelector<RootState, boolean>(state => state.profile.loading);
+  const posts = useSelector<RootState, PostDetail[]>(state => state.profile.posts);
 
   useEffect(() => {
     dispatch(getProfile(id, user_id));
+    dispatch(getUserPosts(id, user_id));
     // eslint-disable-next-line
   }, []);
 
@@ -27,7 +30,7 @@ const Profile: React.FC = () => {
   return (
     <IonPage>
 
-      {loading ? <IonSpinner /> :
+      {loading && posts.length < 1 ? <IonSpinner /> :
         (
           <IonContent>
             {}
@@ -69,6 +72,7 @@ const Profile: React.FC = () => {
                 </IonRow>
               </IonGrid>
             </div>
+            {loading && posts.length < 1 ? <IonSpinner /> : <ProfileList id={id} />}
           </IonContent>
         )
       }

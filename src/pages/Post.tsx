@@ -26,7 +26,7 @@ const Post: React.FC = () => {
   useEffect(() => {
     dispatch(getPostDetail(id, user_id));
     // eslint-disable-next-line
-  }, []);
+  }, [id]);
 
   const onUserClicked = () => {
     dispatch(fetchProfileAction());
