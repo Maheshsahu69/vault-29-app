@@ -34,6 +34,7 @@ import { loadState } from './utils/localStorage';
 import PublicRoute from './routing/PublicRoute';
 import PrivateRoute from './routing/PrivateRoute';
 import Search from './pages/Search';
+import Profile from './pages/Profile';
 
 setAccept();
 
@@ -56,6 +57,9 @@ const App: React.FC = () => (
         </PublicRoute>
         <PrivateRoute exact path="/search">
           <Search />
+        </PrivateRoute>
+        <PrivateRoute exact path="/profile/:id">
+          <Profile />
         </PrivateRoute>
         <Route>
           <TabRoot />

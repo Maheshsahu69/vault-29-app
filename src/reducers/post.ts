@@ -47,8 +47,6 @@ export default function (state = initialState, action: PostActionTypes) {
       } else {
         return { ...state, searchResults: [...state.searchResults, ...action.posts], loadMore: true, loading: false };
       }
-    case GET_POSTS_COMPLETE:
-      return { ...state, loadMore: false };
     default:
       return state;
   }

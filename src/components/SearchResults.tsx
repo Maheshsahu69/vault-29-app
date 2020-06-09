@@ -1,9 +1,9 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../reducers';
-import { getPosts, fetchPostAction, searchPosts } from '../actions/post';
+import { fetchPostAction, searchPosts } from '../actions/post';
 import { IonInfiniteScroll, IonInfiniteScrollContent, IonGrid, IonRow, IonCol } from '@ionic/react';
-import { Post, PostDetail } from '../types';
+import { PostDetail } from '../types';
 import { API_ENDPOINT } from '../constants';
 import './WineList.css';
 import { useHistory } from 'react-router';

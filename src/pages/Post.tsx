@@ -5,12 +5,13 @@ import { getPostDetail } from '../actions/post';
 import { RootState } from '../reducers';
 import logoWhite from '../images/logo-white.png';
 import logoBlack from '../images/logo-black.png';
-import { useParams } from 'react-router';
+import { useParams, useHistory } from 'react-router';
 import { PostDetail } from '../types';
 import { API_ENDPOINT } from '../constants';
 import { locationOutline, timeOutline, heartOutline, chatbubbleEllipsesOutline, starOutline, ellipsisVerticalOutline } from 'ionicons/icons';
 import moment from 'moment';
 import './Post.css';
+import { fetchProfileAction } from '../actions/profile';
 
 const Post: React.FC = () => {
   const { id } = useParams();
@@ -19,11 +20,17 @@ const Post: React.FC = () => {
   const isDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
   const loading = useSelector<RootState, boolean>(state => state.post.loading);
   const post = useSelector<RootState, PostDetail>(state => state.post.post);
+  const history = useHistory();
 
   useEffect(() => {
     dispatch(getPostDetail(id, user_id));
     // eslint-disable-next-line
   }, []);
+
+  const onUserClicked = () => {
+    dispatch(fetchProfileAction());
+    history.push(`/profile/${post.user_id}`);
+  }
 
   return (
     <IonPage>
@@ -46,10 +53,10 @@ const Post: React.FC = () => {
                 <IonCol>
                   <IonItem>
                     <IonAvatar slot='start'>
-                      <img alt='Post User Profile' src={`${API_ENDPOINT}/${post.thumbnail_url}`} />
+                      <img alt='Post User Profile' src={`${API_ENDPOINT}/${post.attributes.photo_url}`} />
                     </IonAvatar>
                     <IonLabel>
-                      <IonText><h1>{post.name}</h1></IonText>
+                      <IonText onClick={() => onUserClicked()}><h1>{post.name}</h1></IonText>
                       <IonText><span className='icon-location'><IonIcon slot='start' src={locationOutline} /></span>{post.venue}</IonText>
                     </IonLabel>
                   </IonItem>
