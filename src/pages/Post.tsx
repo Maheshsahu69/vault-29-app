@@ -12,6 +12,7 @@ import { locationOutline, timeOutline, heartOutline, chatbubbleEllipsesOutline, 
 import moment from 'moment';
 import './Post.css';
 import { fetchProfileAction } from '../actions/profile';
+import avatar from '../images/avatar-placeholder.png';
 
 const Post: React.FC = () => {
   const { id } = useParams();
@@ -31,6 +32,8 @@ const Post: React.FC = () => {
     dispatch(fetchProfileAction());
     history.push(`/profile/${post.user_id}`);
   }
+
+  const profileUrl = post && post.attributes && post.attributes.photo_url ? `${API_ENDPOINT}/${post.attributes.photo_url}` : avatar;
 
   return (
     <IonPage>
@@ -53,7 +56,7 @@ const Post: React.FC = () => {
                 <IonCol>
                   <IonItem>
                     <IonAvatar slot='start'>
-                      <img alt='Post User Profile' src={`${API_ENDPOINT}/${post.attributes.photo_url}`} />
+                      <img alt='Post User Profile' src={profileUrl} />
                     </IonAvatar>
                     <IonLabel>
                       <IonText onClick={() => onUserClicked()}><h1>{post.name}</h1></IonText>

@@ -8,6 +8,7 @@ import { API_ENDPOINT } from '../constants';
 import { locationOutline } from 'ionicons/icons';
 import './Profile.css';
 import { getProfile } from '../actions/profile';
+import avatar from '../images/avatar-placeholder.png';
 
 const Profile: React.FC = () => {
   const profile = useSelector<RootState, User>(state => state.profile.profile);
@@ -21,6 +22,8 @@ const Profile: React.FC = () => {
     // eslint-disable-next-line
   }, []);
 
+  const profileUrl = profile.photo_url ? `${API_ENDPOINT}/${profile.photo_url}` : avatar;
+
   return (
     <IonPage>
 
@@ -29,7 +32,7 @@ const Profile: React.FC = () => {
           <IonContent>
             {}
             <div style={{
-              background: `#fff url("${API_ENDPOINT}/${profile.photo_url}") no-repeat
+              background: `#fff url(${profileUrl}) no-repeat
     center center / cover`
             }}>
               <IonGrid className='opaque-grid'>
@@ -48,7 +51,7 @@ const Profile: React.FC = () => {
                   <IonCol>
                     <IonItem color='transparent' lines='none' className='ion-text-center'>
                       <IonAvatar className='avatar-profile'>
-                        <img alt='User Profile' src={`${API_ENDPOINT}/${profile.photo_url}`} />
+                        <img alt='User Profile' src={profileUrl} />
                       </IonAvatar>
                     </IonItem>
                   </IonCol>
