@@ -26,7 +26,7 @@ const Profile: React.FC = () => {
     // eslint-disable-next-line
   }, []);
 
-  const profileUrl = profile.photo_url ? `${API_ENDPOINT}/${profile.photo_url}` : avatar;
+  const profileUrl = profile.facebook_uid ? `//graph.facebook.com/${profile.facebook_uid}/picture?type=large` : profile.photo_url ? `${API_ENDPOINT}/${profile.photo_url}` : avatar;
 
   return (
     <IonPage>
@@ -55,7 +55,7 @@ const Profile: React.FC = () => {
                   <IonCol>
                     <IonItem color='transparent' lines='none' className='ion-text-center'>
                       <IonAvatar className='avatar-profile'>
-                        <img alt='User Profile' src={profileUrl} />
+                        <img alt='User Icon' src={profileUrl} />
                       </IonAvatar>
                     </IonItem>
                   </IonCol>

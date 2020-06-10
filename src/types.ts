@@ -44,6 +44,7 @@ export interface JoinForm {
 
 export interface Post {
   id: number,
+  facebook_uid?: number,
   name: string,
   venue: string,
   city: string,

@@ -33,7 +33,7 @@ const Post: React.FC = () => {
     history.push(`/profile/${post.user_id}`);
   }
 
-  const profileUrl = post && post.attributes && post.attributes.photo_url ? `${API_ENDPOINT}/${post.attributes.photo_url}` : avatar;
+  const profileUrl = post && post.facebook_uid ? `//graph.facebook.com/${post.facebook_uid}/picture` : post.attributes && post.attributes.photo_url ? `${API_ENDPOINT}/${post.attributes.photo_url}` : avatar;
 
   return (
     <IonPage>
@@ -56,7 +56,7 @@ const Post: React.FC = () => {
                 <IonCol>
                   <IonItem>
                     <IonAvatar slot='start'>
-                      <img alt='Post User Profile' src={profileUrl} />
+                      <img alt='User Icon' src={profileUrl} />
                     </IonAvatar>
                     <IonLabel>
                       <IonText onClick={() => onUserClicked()}><h1>{post.name}</h1></IonText>

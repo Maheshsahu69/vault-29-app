@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../reducers';
-import { fetchPostAction, searchPosts } from '../actions/post';
+import { fetchPostAction } from '../actions/post';
 import { IonInfiniteScroll, IonInfiniteScrollContent, IonGrid, IonRow, IonCol } from '@ionic/react';
 import { PostDetail } from '../types';
 import { API_ENDPOINT } from '../constants';
