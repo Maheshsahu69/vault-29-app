@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Route } from 'react-router-dom';
 import {
-  IonApp, IonRouterOutlet
+  IonApp, IonRouterOutlet, IonToast, IonAlert
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 
@@ -35,15 +35,77 @@ import PublicRoute from './routing/PublicRoute';
 import PrivateRoute from './routing/PrivateRoute';
 import Search from './pages/Search';
 import Profile from './pages/Profile';
+import { useSelector } from 'react-redux';
+import { RootState } from './reducers';
 
 setAccept();
 
 const token = loadState('token');
 token && setAuthToken(token);
 
+const [showAlert, setShowAlert] = useState(false);
+
+const isServiceWorkerInitialized = useSelector<RootState, boolean>(
+  state => state.worker.serviceWorkerInitialized,
+);
+
+const isServiceWorkerUpdated = useSelector<RootState, boolean>(
+  state => state.worker.serviceWorkerUpdated,
+);
+
+const serviceWorkerRegistration = useSelector<RootState, ServiceWorkerRegistration>(
+  state => state.worker.serviceWorkerRegistration,
+);
+
+useEffect(() => {
+  if (isServiceWorkerUpdated) {
+    setShowAlert(true);
+  }
+}, [isServiceWorkerUpdated]);
+
+const updateServiceWorker = () => {
+  const registrationWaiting = serviceWorkerRegistration.waiting;
+
+  if (registrationWaiting) {
+    registrationWaiting.postMessage({ type: 'SKIP_WAITING' });
+
+    registrationWaiting.addEventListener('statechange', (e: any) => {
+      if (e.target.state === 'activated') {
+        window.location.reload();
+      }
+    });
+  }
+};
+
 const App: React.FC = () => (
   <IonApp>
     <Alert />
+    {isServiceWorkerInitialized && (
+      <IonToast isOpen message='This app is now available off-line' color='primary' duration={2000} />
+    )}
+    <IonAlert
+      isOpen={showAlert}
+      onDidDismiss={() => setShowAlert(false)}
+      header={'App Update Available'}
+      message={`An updated version of this app is available.  Update now ?`}
+      buttons={[
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+            setShowAlert(false);
+          }
+        },
+        {
+          text: 'Ok',
+          handler: () => {
+            setShowAlert(false);
+            updateServiceWorker();
+          }
+        }
+      ]}
+    />
     <IonReactRouter>
       <IonRouterOutlet>
         <PublicRoute exact path="/">

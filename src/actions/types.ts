@@ -29,3 +29,5 @@ export const USER_POSTS_SUCCESS = 'USER_POSTS_SUCCESS';
 export const USER_POSTS_FAIL = 'USER_POSTS_FAIL';
 export const USER_POSTS_COMPLETE = 'USER_POSTS_COMPLETE';
 
+export const SW_INIT = 'SW_INIT';
+export const SW_UPDATE = 'SW_UPDATE';
