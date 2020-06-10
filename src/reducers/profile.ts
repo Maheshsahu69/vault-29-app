@@ -8,7 +8,7 @@ export interface ProfileState {
   loading: boolean,
   error: string,
   posts: PostDetail[],
-  count?: number
+  count: number
 }
 
 const initialState: ProfileState = {
@@ -16,7 +16,8 @@ const initialState: ProfileState = {
   loadMore: true,
   loading: true,
   error: '',
-  posts: []
+  posts: [],
+  count: 0
 }
 
 export default function (state = initialState, action: ProfileActionTypes) {
@@ -33,7 +34,7 @@ export default function (state = initialState, action: ProfileActionTypes) {
       }
       return { ...state, posts: [...state.posts, ...action.posts], loadMore: true, count: action.count, loading: false };
     case USER_POSTS_FAIL:
-      return { ...state, count: action.count, loading: false, error: action.message };
+      return { ...state, loading: false, error: action.message };
     case USER_POSTS_COMPLETE:
       return { ...state, loadMore: false };
     default:

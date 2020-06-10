@@ -5,7 +5,7 @@ import { RootState } from '../reducers';
 import { useParams } from 'react-router';
 import { User, PostDetail } from '../types';
 import { API_ENDPOINT } from '../constants';
-import { locationOutline } from 'ionicons/icons';
+import { locationOutline, readerOutline } from 'ionicons/icons';
 import './Profile.css';
 import { getProfile, getUserPosts } from '../actions/profile';
 import avatar from '../images/avatar-placeholder.png';
@@ -18,6 +18,7 @@ const Profile: React.FC = () => {
   const dispatch = useDispatch();
   const loading = useSelector<RootState, boolean>(state => state.profile.loading);
   const posts = useSelector<RootState, PostDetail[]>(state => state.profile.posts);
+  const count = useSelector<RootState, number>(state => state.profile.count);
 
   useEffect(() => {
     dispatch(getProfile(id, user_id));
@@ -61,11 +62,16 @@ const Profile: React.FC = () => {
                 </IonRow>
                 <IonRow>
                   <IonCol>
-                    <IonItem color='transparent' lines='none' className='ion-text-center ion-no-padding' >
+                    <IonItem color='transparent' className='ion-text-center' >
                       <IonLabel className='ion-no-padding'>
                         <IonText><h1>{profile.username}</h1></IonText>
                         <IonText><h2>@{profile.userid}</h2></IonText>
                         <IonText><span className='icon-location'><IonIcon slot='start' src={locationOutline} /></span>{profile.location}</IonText>
+                      </IonLabel>
+                    </IonItem>
+                    <IonItem color='transparent' lines='none' className='ion-text-center ion-no-padding' >
+                      <IonLabel className='ion-no-padding'>
+                        <IonText><span className='icon-location'><IonIcon slot='start' src={readerOutline} /></span>{count} posts</IonText>
                       </IonLabel>
                     </IonItem>
                   </IonCol>
