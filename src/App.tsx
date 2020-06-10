@@ -43,42 +43,43 @@ setAccept();
 const token = loadState('token');
 token && setAuthToken(token);
 
-const [showAlert, setShowAlert] = useState(false);
+const App: React.FC = () => {
 
-const isServiceWorkerInitialized = useSelector<RootState, boolean>(
-  state => state.worker.serviceWorkerInitialized,
-);
+  const [showAlert, setShowAlert] = useState(false);
 
-const isServiceWorkerUpdated = useSelector<RootState, boolean>(
-  state => state.worker.serviceWorkerUpdated,
-);
+  const isServiceWorkerInitialized = useSelector<RootState, boolean>(
+    state => state.worker.serviceWorkerInitialized,
+  );
 
-const serviceWorkerRegistration = useSelector<RootState, ServiceWorkerRegistration>(
-  state => state.worker.serviceWorkerRegistration,
-);
+  const isServiceWorkerUpdated = useSelector<RootState, boolean>(
+    state => state.worker.serviceWorkerUpdated,
+  );
 
-useEffect(() => {
-  if (isServiceWorkerUpdated) {
-    setShowAlert(true);
-  }
-}, [isServiceWorkerUpdated]);
+  const serviceWorkerRegistration = useSelector<RootState, ServiceWorkerRegistration>(
+    state => state.worker.serviceWorkerRegistration,
+  );
 
-const updateServiceWorker = () => {
-  const registrationWaiting = serviceWorkerRegistration.waiting;
+  useEffect(() => {
+    if (isServiceWorkerUpdated) {
+      setShowAlert(true);
+    }
+  }, [isServiceWorkerUpdated]);
 
-  if (registrationWaiting) {
-    registrationWaiting.postMessage({ type: 'SKIP_WAITING' });
+  const updateServiceWorker = () => {
+    const registrationWaiting = serviceWorkerRegistration.waiting;
 
-    registrationWaiting.addEventListener('statechange', (e: any) => {
-      if (e.target.state === 'activated') {
-        window.location.reload();
-      }
-    });
-  }
-};
+    if (registrationWaiting) {
+      registrationWaiting.postMessage({ type: 'SKIP_WAITING' });
 
-const App: React.FC = () => (
-  <IonApp>
+      registrationWaiting.addEventListener('statechange', (e: any) => {
+        if (e.target.state === 'activated') {
+          window.location.reload();
+        }
+      });
+    }
+  };
+
+  return (<IonApp>
     <Alert />
     {isServiceWorkerInitialized && (
       <IonToast isOpen message='This app is now available off-line' color='primary' duration={2000} />
@@ -129,6 +130,7 @@ const App: React.FC = () => (
       </IonRouterOutlet>
     </IonReactRouter>``
   </IonApp>
-);
+  )
+};
 
 export default App;
