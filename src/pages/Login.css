@@ -1,5 +1,5 @@
 .bg-img-login {
-  --background: #fff url("../Images/vault29-blurred-background.jpg") no-repeat
+  --background: #fff url("../images/vault29-blurred-background.jpg") no-repeat
     center center / cover;
 }
 .top-img-login {
@@ -11,8 +11,7 @@
 .login-txt {
   text-align: center;
   color: #ffffff;
-  font-weight: bold;
-  font-size: 25px;
+  font-size: 22px;
 }
 .email-txt {
   text-align: center;
@@ -32,11 +31,8 @@
 }
 .btn-login {
   color: #ffffff;
+  --border-width: 1px;
   --border-color: #ffffff;
-}
-
-.div-btn {
-  padding-top: 10px;
 }
 
 .dash-txt,
