@@ -40,7 +40,9 @@ const ProfileList: React.FC<ProfileListProps> = ({ id }) => {
             {posts.map(post =>
               <img className='gallery-post' key={post.id} src={`${API_ENDPOINT}/${post.thumbnail_url}`}
                 alt={post.comment} onClick={() => onPostDetails(post.id)} />
+                
             )}
+            
           </IonCol>
         </IonRow>
       </IonGrid>
@@ -54,4 +56,4 @@ const ProfileList: React.FC<ProfileListProps> = ({ id }) => {
   );
 };
 
-export default ProfileList;
+export default ProfileList; 
