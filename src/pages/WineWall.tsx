@@ -24,8 +24,6 @@ import { searchOutline } from "ionicons/icons";
 import { setAlert } from "../actions/alert";
 import { useHistory } from "react-router";
 import { Post } from "../types";
-import LoggedInProfile from "../components/LoggedInProfile";
-
 const WineWall: React.FC = () => {
   const dispatch = useDispatch();
   const history = useHistory();
@@ -33,12 +31,13 @@ const WineWall: React.FC = () => {
     (state) => state.post.loading
   );
   const posts = useSelector<RootState, Post[]>((state) => state.post.posts);
+  const user_id = useSelector<RootState, number>((state) => state.auth.user.id);
+  console.log("user_id", user_id);
   const isDarkMode =
     window.matchMedia &&
     window.matchMedia("(prefers-color-scheme: dark)").matches;
   const [query, setQuery] = useState("");
   const [searchEnabled, setSearchEnabled] = useState(false);
-  const [logged, setLogged] = useState(false);
 
   useEffect(() => {
     dispatch(getPosts(0, 40));
@@ -50,6 +49,8 @@ const WineWall: React.FC = () => {
     dispatch(searchQueryAction(query));
     if (query.length > 2) {
       history.push("/search");
+      console.log("history", history);
+      
     } else {
       dispatch(setAlert("Enter at least 3 characters", "danger"));
     }
@@ -59,6 +60,10 @@ const WineWall: React.FC = () => {
     setQuery("");
   };
 
+  const onGetProfile=()=>{
+    history.push(`/profile/${user_id}`)
+  }
+
   return (
     <IonPage>
       <IonHeader>
@@ -66,7 +71,7 @@ const WineWall: React.FC = () => {
           <button
             slot="start"
             onClick={() => {
-              setLogged(!logged);
+              onGetProfile()
             }}
           >
             <IonAvatar slot="start">
@@ -98,7 +103,7 @@ const WineWall: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent>
-        {logged && <LoggedInProfile />}
+        {/* {logged && <Profile />} */}
         {searchEnabled && (
           <IonItem lines="none">
             <IonSearchbar
