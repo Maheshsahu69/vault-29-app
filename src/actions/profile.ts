@@ -119,6 +119,7 @@ export const getUserPosts = (user_id: number, my_id: number, offset = 0, limit =
 
     if (JSON.parse(res.data.success)) {
       dispatch(userPostAction(res.data.data, offset, res.data.post_count));
+      console.log("res.data.success",res.data.success);
     } else {
       dispatch(setAlert(res.data.message, 'danger'));
       dispatch(userPostFailAction(res.data.message, res.data.post_count));
