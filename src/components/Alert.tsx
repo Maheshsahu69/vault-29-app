@@ -4,6 +4,7 @@ import { IonToast } from '@ionic/react';
 import { AlertMessage } from '../types';
 import { RootState } from '../reducers';
 
+
 const Alert: React.FC = () => {
 
   const alerts = useSelector<RootState, AlertMessage[]>(state => state.alert.alerts);
