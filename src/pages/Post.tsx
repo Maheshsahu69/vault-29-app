@@ -129,7 +129,7 @@ const Post: React.FC = () => {
   const [searchEnabled, setSearchEnabled] = useState(false);
 
   var arrayWithHash: any[] = [];
-  var zzz;
+  var renderPlanText;
   var arrayTempEmoji: any[] = [];
 
   useEffect(() => {
@@ -153,8 +153,8 @@ const Post: React.FC = () => {
   const getComment = () => {
     let a, b;
     var c = [];
-    var z: any[] = [];
-    var zz;
+    var comentsTempArray: any[] = [];
+    var convertCommentsToString;
     a = post.comment;
     if (a) {
       b = a.split(" ");
@@ -164,9 +164,9 @@ const Post: React.FC = () => {
         if (cb === "#") {
           return arrayWithHash.push(e);
         } else {
-          z.push(e);
-          zz = z.toString();
-          return (zzz = zz.replace(/,/g, " "));
+          comentsTempArray.push(e);
+          convertCommentsToString = comentsTempArray.toString();
+          return (renderPlanText = convertCommentsToString.replace(/,/g, " "));
         }
       });
     }
@@ -181,9 +181,9 @@ const Post: React.FC = () => {
       convertEmojiStringInArray = a.split(",");
 
       convertEmojiStringInArray.map((e) => {
-       return dataJSON.filter((ele) => {
+        return dataJSON.filter((ele) => {
           if (ele.name === e) {
-             arrayTempEmoji.push(ele);
+            arrayTempEmoji.push(ele);
           }
           return arrayTempEmoji;
         });
@@ -282,7 +282,7 @@ const Post: React.FC = () => {
 
             <IonCardContent>
               <h1>
-                {zzz}{" "}
+                {renderPlanText}{" "}
                 {arrayWithHash.map((e, key) => {
                   return (
                     <a
@@ -303,7 +303,7 @@ const Post: React.FC = () => {
               </h1>
             </IonCardContent>
             <div>
-               { arrayTempEmoji.map((e, key) => {
+              {arrayTempEmoji.map((e, key) => {
                 for (var i = 0; i < dataJSON.length; i++) {
                   if (dataJSON[i].name === e.name) {
                     return (
@@ -316,7 +316,7 @@ const Post: React.FC = () => {
                     );
                   }
                 }
-                return dataJSON ;
+                return dataJSON;
               })}
             </div>
             <IonGrid>
