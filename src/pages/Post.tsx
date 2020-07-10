@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import {
   IonContent,
   IonHeader,
@@ -17,8 +17,6 @@ import {
   IonCol,
   IonCardContent,
   IonLabel,
-  IonSearchbar,
-  IonButton,
 } from "@ionic/react";
 import { useDispatch, useSelector } from "react-redux";
 import { getPostDetail } from "../actions/post";
@@ -40,78 +38,8 @@ import moment from "moment";
 import "./Post.css";
 import { fetchProfileAction } from "../actions/profile";
 import { searchQueryAction } from "../actions/post";
-import { setAlert } from "../actions/alert";
-import { searchOutline } from "ionicons/icons";
 import avatar from "../images/avatar-placeholder.png";
-import birthday from "../images/emojis/Birthday.png";
-import delicious from "../images/emojis/Delicious.png";
-import twoThumbs from "../images/emojis/TwoThumbs.png";
-import love from "../images/emojis/Love.png";
-import redGrapes from "../images/emojis/RedGrapes.png";
-import wineShop from "../images/emojis/WineShop.png";
-import cherry from "../images/emojis/Cherry.png";
-import cabernet from "../images/emojis/Cabernet.png";
-import redBottle from "../images/emojis/RedBottle.png";
-import chardonnay from "../images/emojis/Chardonnay.png";
-
-const dataJSON = [
-  {
-    name: "emoticon_birthday",
-    img: birthday,
-    id: "1",
-  },
-  {
-    name: "emoticon_delicious",
-    img: delicious,
-    id: "2",
-  },
-  {
-    name: "emoticon_two-thumbs",
-    img: twoThumbs,
-    id: "3",
-  },
-  {
-    name: "emoticon_heart",
-    img: love,
-    id: "4",
-  },
-
-  {
-    name: "emoticon_red-grapes",
-    img: redGrapes,
-    id: "5",
-  },
-  {
-    name: "moticon_wine-shop",
-    img: wineShop,
-    id: "6",
-  },
-  {
-    name: "emoticon_cherry",
-    img: cherry,
-    id: "7",
-  },
-  {
-    name: "emoticon_cabernet",
-    img: cabernet,
-    id: "8",
-  },
-  {
-    name: "emoticon_red-bottle",
-    img: redBottle,
-    id: "9",
-  },
-  {
-    name: "emoticon_chardonnay",
-    img: chardonnay,
-    id: "10",
-  },
-  {
-    name: "emoticon_winetasting",
-    img: love,
-    id: "10",
-  },
-];
+import { imagesJSON } from "../constants";
 
 const Post: React.FC = () => {
   const { id } = useParams();
@@ -125,8 +53,6 @@ const Post: React.FC = () => {
   );
   const post = useSelector<RootState, PostDetail>((state) => state.post.post);
   const history = useHistory();
-  const [query, setQuery] = useState("");
-  const [searchEnabled, setSearchEnabled] = useState(false);
 
   var arrayWithHash: any[] = [];
   var renderPlanText;
@@ -136,37 +62,33 @@ const Post: React.FC = () => {
     dispatch(getPostDetail(id, user_id));
     // eslint-disable-next-line
   }, [id]);
-  const onCleared = () => {
-    setQuery("");
-  };
-
-  const onSearchClicked = (e: any) => {
-    // e.preventDefault();
-    dispatch(searchQueryAction(query));
-    if (query.length > 2) {
-      history.push("/search");
-    } else {
-      dispatch(setAlert("Enter at least 3 characters", "danger"));
-    }
-  };
-
   const getComment = () => {
-    let a, b;
-    var c = [];
-    var comentsTempArray: any[] = [];
+    let varPostComment, varSplitPostComment;
+    var tempArrayPostComment = [];
     var convertCommentsToString;
-    a = post.comment;
-    if (a) {
-      b = a.split(" ");
-      c = b;
-      c.map((e) => {
-        let cb = e.split("")[0];
-        if (cb === "#") {
-          return arrayWithHash.push(e);
+    varPostComment = post.comment;
+    if (varPostComment) {
+      varSplitPostComment = varPostComment.split(" ");
+      tempArrayPostComment = varSplitPostComment;
+      tempArrayPostComment.map((e) => {
+        let varHash = e.split("")[0];
+        if (varHash === "#") {
+          return arrayWithHash.push(
+            <button
+              onClick={() => {
+                dispatch(searchQueryAction(e));
+                history.push("/search");
+              }}
+              className="link-decoration"
+            >
+              <h1>{e}</h1>
+            </button>
+          );
         } else {
-          comentsTempArray.push(e);
-          convertCommentsToString = comentsTempArray.toString();
-          return (renderPlanText = convertCommentsToString.replace(/,/g, " "));
+          convertCommentsToString = e.toString();
+          renderPlanText = convertCommentsToString.replace(/,/g, " ");
+          arrayWithHash.push(renderPlanText + " ");
+          return arrayWithHash;
         }
       });
     }
@@ -181,7 +103,7 @@ const Post: React.FC = () => {
       convertEmojiStringInArray = a.split(",");
 
       convertEmojiStringInArray.map((e) => {
-        return dataJSON.filter((ele) => {
+        return imagesJSON.filter((ele) => {
           if (ele.name === e) {
             arrayTempEmoji.push(ele);
           }
@@ -226,21 +148,6 @@ const Post: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent>
-        {searchEnabled && (
-          <IonItem lines="none">
-            <IonSearchbar
-              value={query}
-              placeholder="Search"
-              onKeyDown={(e) => e.key === "Enter" && onSearchClicked(e)}
-              onIonChange={(e) => setQuery(e.detail.value!)}
-              onIonCancel={() => onCleared()}
-              onIonClear={() => onCleared()}
-            ></IonSearchbar>
-            <IonButton fill="clear" onClick={(e) => onSearchClicked(e)}>
-              <IonIcon slot="icon-only" icon={searchOutline}></IonIcon>
-            </IonButton>
-          </IonItem>
-        )}
         {loading ? (
           <IonSpinner />
         ) : (
@@ -282,41 +189,27 @@ const Post: React.FC = () => {
 
             <IonCardContent>
               <h1>
-                {renderPlanText}{" "}
+                {/* {renderPlanText}{" "} */}
                 {arrayWithHash.map((e, key) => {
-                  return (
-                    <a
-                      key={key}
-                      id={"a" + key}
-                      className="link-decoration"
-                      onClick={(ee) => {
-                        setQuery(e);
-                        setSearchEnabled(!searchEnabled);
-                        onSearchClicked(ee);
-                      }}
-                    >
-                      {" "}
-                      {e}
-                    </a>
-                  );
+                  return <span key={key}>{e}</span>;
                 })}{" "}
               </h1>
             </IonCardContent>
             <div>
               {arrayTempEmoji.map((e, key) => {
-                for (var i = 0; i < dataJSON.length; i++) {
-                  if (dataJSON[i].name === e.name) {
+                for (var i = 0; i < imagesJSON.length; i++) {
+                  if (imagesJSON[i].name === e.name) {
                     return (
                       <img
                         key={key}
-                        src={dataJSON[i].img}
+                        src={imagesJSON[i].img}
                         className="imgStyle"
-                        alt="imageError"
+                        alt={e.name}
                       />
                     );
                   }
                 }
-                return dataJSON;
+                return imagesJSON;
               })}
             </div>
             <IonGrid>
