@@ -1,4 +1,4 @@
-import { LOGIN_SUCCESS, LOGIN_FAIL, JOIN_SUCCESS, JOIN_FAIL } from "./types";
+ import { LOGIN_SUCCESS, LOGIN_FAIL, JOIN_SUCCESS, JOIN_FAIL } from "./types";
 import { User, JoinForm } from "../types";
 import { AppThunk } from "../store";
 import axios from 'axios';

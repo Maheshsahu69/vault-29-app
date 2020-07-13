@@ -37,6 +37,7 @@ import Search from './pages/Search';
 import Profile from './pages/Profile';
 import { useSelector } from 'react-redux';
 import { RootState } from './reducers';
+import UserType from './pages/UserType';
 
 setAccept();
 
@@ -124,6 +125,9 @@ const App: React.FC = () => {
         <PrivateRoute exact path="/profile/:id">
           <Profile />
         </PrivateRoute>
+        <PublicRoute exact path="/usertype">
+          <UserType />
+        </PublicRoute>
         <Route>
           <TabRoot />
         </Route>
