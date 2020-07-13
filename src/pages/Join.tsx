@@ -88,7 +88,7 @@ const Join: React.FC = () => {
   }
 
   const onClose = () => {
-    history.replace('/usertype');
+    history.replace('/');
   }
 
   return (

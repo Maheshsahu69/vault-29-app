@@ -74,7 +74,7 @@ const Home: React.FC = () => {
 
           <IonRow>
             <IonCol>
-              <Link to="/usertype" className="link-join">
+              <Link to="/join" className="link-join">
                 <IonButton
                   fill="outline"
                   expand="block"

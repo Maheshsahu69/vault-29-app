@@ -1,14 +1,14 @@
-import birthday from './images/Images.xcassets/emoticon_birthday.imageset/Birthday.png';
-import delicious from './images/Images.xcassets/emoticon_delicious.imageset/Delicious.png';
-import love from './images/Images.xcassets/emoticon_heart.imageset/Love.png';
-import wineShop from './images/Images.xcassets/emoticon_wine-shop.imageset/Wine Shop.png';
-import cherry from './images/Images.xcassets/emoticon_cherry.imageset/Cherry.png';
-import redGrapes from './images/Images.xcassets/emoticon_red-grapes.imageset/Red Grapes.png';
-import cabernet from './images/Images.xcassets/emoticon_cabernet.imageset/Cabernet.png';
-import redBottle from './images/Images.xcassets/emoticon_red-bottle.imageset/Red Bottle.png';
-import chardonnay from './images/Images.xcassets/emoticon_chardonnay.imageset/Chardonnay.png'
-import wineTesting from './images/Images.xcassets/emoticon_winetasting.imageset/Wine Tasting.png'
-import twoThumbs from './images/Images.xcassets/emoticon_two-thumbs.imageset/Two Thumbs.png'
+import birthday from './images/emojis/Birthday.png';
+import delicious from './images/emojis/Delicious.png';
+import love from './images/emojis/Love.png';
+import wineShop from './images/emojis/Wine Shop.png';
+import cherry from './images/emojis/Cherry.png';
+import redGrapes from './images/emojis/Red Grapes.png';
+import cabernet from './images/emojis/Cabernet.png';
+import redBottle from './images/emojis/Red Bottle.png';
+import chardonnay from './images/emojis/Chardonnay.png'
+import wineTesting from './images/emojis/Wine Tasting.png'
+import twoThumbs from './images/emojis/Two Thumbs.png'
 
 
 export const API_ENDPOINT = 'https://vault29-backend.innoventestech.in';
