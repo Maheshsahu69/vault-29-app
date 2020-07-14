@@ -30,9 +30,9 @@ const WineWall: React.FC = () => {
   const loading = useSelector<RootState, boolean>(
     (state) => state.post.loading
   );
+  
   const posts = useSelector<RootState, Post[]>((state) => state.post.posts);
   const user_id = useSelector<RootState, number>((state) => state.auth.user.id);
-  console.log("user_id", user_id);
   const isDarkMode =
     window.matchMedia &&
     window.matchMedia("(prefers-color-scheme: dark)").matches;
@@ -41,15 +41,15 @@ const WineWall: React.FC = () => {
 
   useEffect(() => {
     dispatch(getPosts(0, 40));
-    // eslint-disable-next-line
-  }, []);
+    // eslint-disable-next-line    
+  },[]);
 
   const onSearchClicked = (e: any) => {
     e.preventDefault();
     dispatch(searchQueryAction(query));
     if (query.length > 2) {
       history.push("/search");
-      console.log("history", history);
+    
       
     } else {
       dispatch(setAlert("Enter at least 3 characters", "danger"));
@@ -103,7 +103,6 @@ const WineWall: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent>
-        {/* {logged && <Profile />} */}
         {searchEnabled && (
           <IonItem lines="none">
             <IonSearchbar

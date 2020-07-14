@@ -71,3 +71,4 @@ export interface PostDetail extends Post {
   latest_comments: string,
   attributes: PostAttribute
 }
+
