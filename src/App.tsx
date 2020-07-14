@@ -37,6 +37,7 @@ import Search from './pages/Search';
 import Profile from './pages/Profile';
 import { useSelector } from 'react-redux';
 import { RootState } from './reducers';
+import UserType from './pages/UserType';
 
 setAccept();
 
@@ -127,6 +128,9 @@ const App: React.FC = () => {
         <Route>
           <TabRoot />
         </Route>
+        <PublicRoute exact path="/usertype">
+          <UserType />
+        </PublicRoute>
       </IonRouterOutlet>
     </IonReactRouter>``
   </IonApp>

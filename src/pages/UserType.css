@@ -1,0 +1,8 @@
+.bg-img-user-type {
+    --background: #fff url("../images/vault29-blurred-background.jpg") no-repeat
+      center center / cover;
+  }
+
+  .button-close {
+    width: 50px;
+  }
