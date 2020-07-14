@@ -30,6 +30,8 @@ const ProfileList: React.FC<ProfileListProps> = ({ id }) => {
   const onPostDetails = (id: number) => {
     dispatch(fetchPostAction());
     history.push(`/posts/${id}`);
+  
+    
   }
 
   return (
@@ -38,10 +40,14 @@ const ProfileList: React.FC<ProfileListProps> = ({ id }) => {
         <IonRow>
           <IonCol size="12" size-sm>
             {posts.map(post =>
+         
               <img className='gallery-post' key={post.id} src={`${API_ENDPOINT}/${post.thumbnail_url}`}
                 alt={post.comment} onClick={() => onPostDetails(post.id)} />
-                
+              
+               
             )}
+
+            
             
           </IonCol>
         </IonRow>

@@ -1,61 +1,72 @@
-import React from 'react';
-import { IonContent, IonPage, IonTitle, IonFooter, IonButton, IonGrid, IonRow, IonCol, IonImg, IonText, IonIcon } from '@ionic/react';
-import './Home.css';
-import { logoFacebook } from 'ionicons/icons';
-import { Link, useHistory } from 'react-router-dom';
-import logo from '../images/icon.png';
-import { useSelector } from 'react-redux';
-import { RootState } from '../reducers';
+import React from "react";
+import {
+  IonContent,
+  IonPage,
+  IonTitle,
+  IonFooter,
+  IonButton,
+  IonGrid,
+  IonRow,
+  IonCol,
+  IonImg,
+  IonText,
+  IonIcon,
+} from "@ionic/react";
+import "./Home.css";
+import { logoFacebook } from "ionicons/icons";
+import { Link, useHistory } from "react-router-dom";
+import logo from "../images/icon.png";
+import { useSelector } from "react-redux";
+import { RootState } from "../reducers";
 
 const Home: React.FC = () => {
-
   const history = useHistory();
 
-  const token = useSelector<RootState, string>(state => state.auth.token);
+  const token = useSelector<RootState, string>((state) => state.auth.token);
 
   if (token) {
-    history.push('/posts');
+    history.push("/posts");
   }
 
   return (
     <IonPage>
-      <IonContent className='bg-img'>
+      <IonContent className="bg-img">
         <IonGrid>
           <IonRow>
             <IonCol>
-              <IonImg src={logo} alt='topPic' className='top-img' />
+              <IonImg src={logo} alt="topPic" className="top-img" />
             </IonCol>
           </IonRow>
           <IonRow>
-            <IonCol className='ion-padding'>
-              <IonTitle className='vault-txt'>
-                {' '}
-                <p> VAULT29</p>{' '}
+            <IonCol className="ion-padding">
+              <IonTitle className="vault-txt">
+                {" "}
+                <p> VAULT29</p>{" "}
               </IonTitle>
             </IonCol>
           </IonRow>
           <IonRow>
-            <IonCol className='ion-padding'>
-              <IonText className='txt-title'>
+            <IonCol className="ion-padding">
+              <IonText className="txt-title">
                 <p>Connecting the world of wine through experiences</p>
               </IonText>
             </IonCol>
           </IonRow>
         </IonGrid>
       </IonContent>
-      <IonFooter className='btn-background'>
+      <IonFooter className="btn-background">
         <IonGrid>
           <IonRow>
             <IonCol>
               <IonButton
                 disabled
-                fill='outline'
-                expand='block'
-                className='btn-facebook'
-                size='large'
+                fill="outline"
+                expand="block"
+                className="btn-facebook"
+                size="large"
                 strong
               >
-                <IonIcon icon={logoFacebook} slot='start'></IonIcon>
+                <IonIcon icon={logoFacebook} slot="start"></IonIcon>
                 CONNECT WITH FACEBOOK
               </IonButton>
             </IonCol>
@@ -63,12 +74,12 @@ const Home: React.FC = () => {
 
           <IonRow>
             <IonCol>
-              <Link to='/join' className='link-join'>
+              <Link to="/join" className="link-join">
                 <IonButton
-                  fill='outline'
-                  expand='block'
-                  className='btn-join'
-                  size='large'
+                  fill="outline"
+                  expand="block"
+                  className="btn-join"
+                  size="large"
                   strong
                 >
                   JOIN
@@ -76,12 +87,12 @@ const Home: React.FC = () => {
               </Link>
             </IonCol>
             <IonCol>
-              <Link to='/login' className='link-login'>
+              <Link to="/login" className="link-login">
                 <IonButton
-                  fill='outline'
-                  expand='block'
-                  className='btn-login'
-                  size='large'
+                  fill="outline"
+                  expand="block"
+                  className="btn-login"
+                  size="large"
                   strong
                 >
                   LOG IN
@@ -91,7 +102,6 @@ const Home: React.FC = () => {
           </IonRow>
         </IonGrid>
       </IonFooter>
-
     </IonPage>
   );
 };

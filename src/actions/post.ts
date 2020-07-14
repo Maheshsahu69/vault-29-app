@@ -117,6 +117,7 @@ export const getPosts = (offset = 0, limit = 20): AppThunk => async dispatch => 
 
     if (JSON.parse(res.data.success)) {
       dispatch(postsSuccessAction(res.data.userData, offset));
+     
     } else {
       dispatch(postCompleteAction());
       dispatch(setAlert(res.data.message, 'danger'));
@@ -157,6 +158,7 @@ export const searchPosts = (query: string, user_id: number, offset = 0, limit = 
 
 export const getPostDetail = (post_id: number, user_id: number): AppThunk => async dispatch => {
   dispatch(fetchPostAction());
+
   try {
     const res = await axios.get(`${API_ENDPOINT}/post/details`, {
       params: {
@@ -167,6 +169,7 @@ export const getPostDetail = (post_id: number, user_id: number): AppThunk => asy
 
     if (JSON.parse(res.data.success)) {
       dispatch(postDetailAction(res.data.post));
+      console.log("data",res.data.post.comment);
     } else {
       dispatch(setAlert(res.data.message, 'danger'));
       dispatch(postDetailFailAction(res.data.message));
