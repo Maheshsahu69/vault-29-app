@@ -18,7 +18,7 @@ export enum AccountType {
   Facebook = 'Facebook'
 }
 
-export enum UserType {
+export enum UserTypeDetails {
   Consumer = 'Consumer',
   Winery = 'Winery',
   Other = 'Other'

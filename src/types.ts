@@ -1,4 +1,4 @@
-import { UserType, AccountType } from "./constants";
+import { UserTypeDetails, AccountType } from "./constants";
 
 export interface User {
   id: number,
@@ -38,7 +38,7 @@ export interface JoinForm {
   location?: string,
   date_of_birth?: string,
   gender?: string,
-  user_type: UserType,
+  user_type: UserTypeDetails,
   account_type: AccountType,
 }
 
