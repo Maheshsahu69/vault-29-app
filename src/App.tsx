@@ -38,7 +38,6 @@ import Profile from './pages/Profile';
 import { useSelector } from 'react-redux';
 import { RootState } from './reducers';
 import UserType from './pages/UserType';
-
 setAccept();
 
 const token = loadState('token');

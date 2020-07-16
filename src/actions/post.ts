@@ -117,6 +117,7 @@ export const getPosts = (offset = 0, limit = 20): AppThunk => async dispatch => 
 
     if (JSON.parse(res.data.success)) {
       dispatch(postsSuccessAction(res.data.userData, offset));
+     
     } else {
       dispatch(postCompleteAction());
       dispatch(setAlert(res.data.message, 'danger'));
@@ -167,7 +168,7 @@ export const getPostDetail = (post_id: number, user_id: number): AppThunk => asy
     });
 
     if (JSON.parse(res.data.success)) {
-      dispatch(postDetailAction(res.data.post));      
+      dispatch(postDetailAction(res.data.post));
     } else {
       dispatch(setAlert(res.data.message, 'danger'));
       dispatch(postDetailFailAction(res.data.message));
