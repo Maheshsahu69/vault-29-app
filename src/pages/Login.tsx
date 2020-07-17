@@ -37,6 +37,7 @@ const Login: React.FC = () => {
   const onLogin = () => {
     if (email && password) {
       dispatch(doLogin(email, password));
+      console.log("dispatch", doLogin(email,password));
     } else {
       dispatch(setAlert('All fields are required', 'danger'));
     }
