@@ -22,7 +22,7 @@ import { useHistory } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { doJoin } from '../actions/auth';
 import { JoinForm } from '../types';
-import { UserType, AccountType } from '../constants';
+import { UserTypeDetails, AccountType } from '../constants';
 import { setAlert } from '../actions/alert';
 import { RootState } from '../reducers';
 import moment from 'moment';
@@ -63,7 +63,7 @@ const Join: React.FC = () => {
           gender,
           location,
           date_of_birth: birthday,
-          user_type: UserType.Consumer,
+          user_type: UserTypeDetails.Consumer,
           account_type: AccountType.Email
         };
         dispatch(doJoin(joinForm));
@@ -88,7 +88,7 @@ const Join: React.FC = () => {
   }
 
   const onClose = () => {
-    history.replace('/');
+    history.replace('/usertype');
   }
 
   return (
